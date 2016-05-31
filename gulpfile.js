@@ -13,9 +13,13 @@ gulp.build({
       .pipe(plugin.debug({ title: 'js:' }))
       .pipe(plugin.jslint())
       .pipe(plugin.babel({ presets: ['es2015'] }))
+      .pipe(plugin.uglify())
       .pipe(gulp.dest('dist')),
     src: ['src/**/*.js']
-  }
+  },
+  'package.json': src => src
+    .pipe(plugin.shrinkwrap())
+    .pipe(gulp.dest('.'))
 })
 
 gulp.reload({

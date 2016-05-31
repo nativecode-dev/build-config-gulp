@@ -1,4 +1,4 @@
-module.exports = ($gulp) => {
+module.exports = $gulp => {
   'use strict'
   return $gulp.depploy = function () {
   }

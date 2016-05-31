@@ -1,0 +1,1 @@
+"use strict";module.exports=function(e){var r=require("fs"),i=(require("merge"),require("gulp-zip"));return e=e||require("gulp"),e["package"]=function(u,n){var p=JSON.parse(r.readFileSync("package.json"));p.name+"."+p.version+".zip";return e.task("package",u,function(){return e.src(n.src).pipe(i(n.dest)).pipe(e.dest(n.dest))})}};

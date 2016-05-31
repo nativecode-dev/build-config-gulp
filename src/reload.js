@@ -1,4 +1,4 @@
-module.exports = ($gulp) => {
+module.exports = $gulp => {
   'use strict'
   var watchers = []
   return $gulp.reload = function ($watches, $tasks) {
@@ -33,5 +33,4 @@ module.exports = ($gulp) => {
       })
     })
   }
-
 }

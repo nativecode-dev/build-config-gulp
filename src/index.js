@@ -1,4 +1,4 @@
-module.exports = function ($gulp) {
+module.exports = $gulp => {
   'use strict'
   $gulp.build = require('./build.js')($gulp)
   $gulp.deploy = require('./deploy.js')($gulp)

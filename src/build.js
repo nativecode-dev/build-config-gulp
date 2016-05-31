@@ -1,4 +1,4 @@
-module.exports = ($gulp) => {
+module.exports = $gulp => {
   'use strict'
   var merge = require('merge')
   $gulp = $gulp || require('gulp')
@@ -10,7 +10,8 @@ module.exports = ($gulp) => {
       var filetype = ($filetypes[key] instanceof Function)
         ? {
           build: $filetypes[key],
-          src: $filetypes[key]
+          name: key,
+          src: key
         }
         : $filetypes[key]
       var taskname = $name + ':' + (filetype.name || key)
@@ -22,5 +23,4 @@ module.exports = ($gulp) => {
     })
     return $gulp.task($name, depends)
   }
-
 }

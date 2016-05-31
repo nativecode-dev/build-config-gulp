@@ -1,4 +1,4 @@
-module.exports = ($gulp) => {
+module.exports = $gulp => {
   'use strict'
   var $fs = require('fs')
   var $merge = require('merge')
@@ -25,5 +25,4 @@ module.exports = ($gulp) => {
         .pipe($gulp.dest(options.dest))
     })
   }
-
 }

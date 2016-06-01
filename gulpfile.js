@@ -22,7 +22,7 @@ gulp.build({
     .pipe(gulp.dest('.'))
 })
 
-gulp.publish.npm({ tasks: ['build'] })
+gulp.publish({ tasks: ['build'] }).npm()
 
 gulp.reload({
   'gulpfile.json': [],

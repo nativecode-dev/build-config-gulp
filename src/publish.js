@@ -2,6 +2,7 @@ module.exports = $gulp => {
   'use strict'
   var merge = require('merge')
   var plugin = require('gulp-load-plugins')($gulp)
+  var spawn = require('child_process').spawn;
 
   var defaults = {
     bump: { type: 'patch' },
@@ -16,17 +17,25 @@ module.exports = $gulp => {
     tasks: undefined
   }
 
-  return $gulp.publish = {
-    npm: function (options) {
-      options = merge({}, defaults, options)
-      return $gulp.task(options.name + ':npm', options.tasks, () => {
-        return $gulp.src(options.src)
-          .pipe(plugin.debug())
-          .pipe(plugin.bump(options.bump))
-          .pipe($gulp.dest(options.dest))
-          .pipe(plugin.git.commit(options.bump.type))
-          .pipe(plugin.tagVersion())
-      })
+  return (options) => {
+    options = merge({}, defaults, options)
+    var npmtask = options.name + ':npm'
+    var tagtask = options.name + ':tag'
+    $gulp.task(tagtask, () => {
+      return $gulp.src(options.src)
+        .pipe(plugin.debug())
+        .pipe(plugin.bump(options.bump))
+        .pipe($gulp.dest(options.dest))
+        .pipe(plugin.git.commit(options.bump.type))
+        .pipe(plugin.tagVersion())
+    })
+
+    return {
+      npm: () => {
+        $gulp.task(npmtask, options.tasks.concat([tagtask]), () => {
+          plugin.git.push(options.git.remote.name, options.git.branch, options.git.options)
+        })
+      }
     }
   }
 }

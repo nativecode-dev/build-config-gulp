@@ -1,6 +1,7 @@
 module.exports = $gulp => {
   'use strict'
   var merge = require('merge')
+  var plugin = require('gulp-load-plugins')($gulp)
   $gulp = $gulp || require('gulp')
 
   return $gulp.build = function ($filetypes, $name) {
@@ -18,7 +19,7 @@ module.exports = $gulp => {
 
       depends.push(taskname)
       $gulp.task(taskname, filetype.tasks || [], () => {
-        return filetype.build($gulp.src(filetype.src))
+        return filetype.build($gulp.src(filetype.src).pipe(plugin.cached()).pipe(plugin.debug()))
       })
     })
     return $gulp.task($name, depends)

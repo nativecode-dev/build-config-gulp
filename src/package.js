@@ -1,8 +1,9 @@
 module.exports = $gulp => {
   'use strict'
-  var $fs = require('fs')
-  var $merge = require('merge')
-  var $zip = require('gulp-zip')
+  var fs = require('fs')
+  var merge = require('merge')
+  var plugin = require('gulp-load-plugins')($gulp)
+  var zip = require('gulp-zip')
   $gulp = $gulp || require('gulp')
 
   /**
@@ -17,11 +18,12 @@ module.exports = $gulp => {
    * @param options {PackageOptions}  - options?
    */
   return $gulp.package = function (depends, options) {
-    var _package = JSON.parse($fs.readFileSync('package.json'))
+    var _package = JSON.parse(fs.readFileSync('package.json'))
     var filename = _package.name + '.' + _package.version + '.zip'
     return $gulp.task('package', depends, () => {
       return $gulp.src(options.src)
-        .pipe($zip(options.dest))
+        .pipe(plugin.debug())
+        .pipe(zip(options.dest))
         .pipe($gulp.dest(options.dest))
     })
   }

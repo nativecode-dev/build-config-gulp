@@ -22,6 +22,8 @@ gulp.build({
     .pipe(gulp.dest('.'))
 })
 
+gulp.publish.npm({ tasks: ['build'] })
+
 gulp.reload({
   'gulpfile.json': [],
   'package.json': ['build'],

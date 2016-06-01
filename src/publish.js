@@ -23,20 +23,21 @@ module.exports = $gulp => {
     var preptask = options.name + ':prep'
     var tagtask = options.name + ':tag'
 
-    $gulp.task(preptask, () => {
+    $gulp.task(tagtask, () => {
+      var filter = plugin.filter('package.json', { restore: true })
       return $gulp.src(options.src)
         .pipe(plugin.debug())
+        // Version bump by type.
         .pipe(plugin.bump(options.bump))
-        .pipe(plugin.filter('package.json'))
+        // Filter, shrinkwrap, then restore the context.
+        .pipe(filter)
         .pipe(plugin.shrinkwrap())
+        .pipe(filter.restore)
         .pipe($gulp.dest(options.dest))
-    })
-
-    $gulp.task(tagtask, [preptask], () => {
-      return $gulp.src(options.src)
-        .pipe(plugin.debug())
+        // Commit changes.
         .pipe(plugin.git.commit(options.bump.type))
-        .pipe(plugin.filter('package.json'))
+        // Tag package version.
+        .pipe(filter)
         .pipe(plugin.tagVersion())
     })
 

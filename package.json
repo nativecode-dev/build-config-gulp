@@ -1,5 +1,5 @@
 {
-  "name": "gulp-deploy",
+  "name": "gulp-build-tasks",
   "author": "support@nativecode.com",
   "description": "Common build tasks for Gulp.",
   "license": "MIT",

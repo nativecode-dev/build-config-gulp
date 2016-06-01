@@ -1,5 +1,5 @@
 {
-  "name": "gulp-deploy",
+  "name": "gulp-build-tasks",
   "version": "1.0.0",
   "dependencies": {
     "gulp": {

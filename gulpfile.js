@@ -3,7 +3,7 @@
 var gulp = require('gulp-help')(require('./src/index.js')(require('gulp')))
 var plugin = require('gulp-load-plugins')(gulp)
 
-gulp.task('default')
+gulp.task('default', ['build'])
 gulp.task('watch', ['build', 'watch:reload'])
 
 gulp.build({

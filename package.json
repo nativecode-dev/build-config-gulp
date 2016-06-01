@@ -1,18 +1,12 @@
 {
   "name": "gulp-build-tasks",
   "author": "support@nativecode.com",
-  "description": "Common build tasks for Gulp.",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "version": "1.0.0",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "dependencies": {
     "gulp-ssh": "^0.5.6",
     "gulp-zip": "^3.2.0",
     "merge": "^1.2.0"
   },
+  "description": "Common build tasks for Gulp.",
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
     "gulp-babel": "^6.1.2",
@@ -27,10 +21,13 @@
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7"
   },
+  "license": "MIT",
+  "main": "dist/index.js",
   "peerDependencies": {
     "gulp": "^3.9.1"
   },
   "publishConfig": {
     "registry": "https://npm.nativecode.com/"
-  }
+  },
+  "version": "1.0.0"
 }

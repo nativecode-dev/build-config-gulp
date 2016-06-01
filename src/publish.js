@@ -19,7 +19,7 @@ module.exports = $gulp => {
 
   return (options) => {
     options = merge({}, defaults, options)
-    var gittask = options.name + ':commit'
+    var gittask = options.name + ':push'
     var npmtask = options.name + ':npm'
     var preptask = options.name + ':prep'
     var pubtask = options.name + ':publish'
@@ -45,8 +45,7 @@ module.exports = $gulp => {
     })
 
     $gulp.task(gittask, () => {
-      return $gulp.src(options.src)
-        .pipe(plugin.git.push(options.git.remote.name, options.git.branch, options.git.options))
+      plugin.git.push(options.git.remote.name, options.git.branch, options.git.options)
     })
 
     $gulp.task(pubtask, (done) => {

@@ -1,6 +1,6 @@
 {
   "name": "gulp-build-tasks",
-  "version": "1.0.13",
+  "version": "1.0.15",
   "dependencies": {
     "gulp": {
       "version": "3.9.1",
@@ -1003,6 +1003,96 @@
             "os-homedir": {
               "version": "1.0.1",
               "from": "os-homedir@>=1.0.0 <2.0.0"
+            }
+          }
+        }
+      }
+    },
+    "gulp-filter": {
+      "version": "4.0.0",
+      "from": "gulp-filter@*",
+      "dependencies": {
+        "multimatch": {
+          "version": "2.1.0",
+          "from": "multimatch@>=2.0.0 <3.0.0",
+          "dependencies": {
+            "array-differ": {
+              "version": "1.0.0",
+              "from": "array-differ@>=1.0.0 <2.0.0"
+            },
+            "array-union": {
+              "version": "1.0.1",
+              "from": "array-union@>=1.0.1 <2.0.0",
+              "dependencies": {
+                "array-uniq": {
+                  "version": "1.0.2",
+                  "from": "array-uniq@>=1.0.1 <2.0.0"
+                }
+              }
+            },
+            "arrify": {
+              "version": "1.0.1",
+              "from": "arrify@>=1.0.0 <2.0.0"
+            },
+            "minimatch": {
+              "version": "3.0.0",
+              "from": "minimatch@>=3.0.0 <4.0.0",
+              "dependencies": {
+                "brace-expansion": {
+                  "version": "1.1.4",
+                  "from": "brace-expansion@>=1.0.0 <2.0.0",
+                  "dependencies": {
+                    "balanced-match": {
+                      "version": "0.4.1",
+                      "from": "balanced-match@>=0.4.1 <0.5.0"
+                    },
+                    "concat-map": {
+                      "version": "0.0.1",
+                      "from": "concat-map@0.0.1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "streamfilter": {
+          "version": "1.0.5",
+          "from": "streamfilter@>=1.0.5 <2.0.0",
+          "dependencies": {
+            "readable-stream": {
+              "version": "2.1.4",
+              "from": "readable-stream@>=2.0.2 <3.0.0",
+              "dependencies": {
+                "buffer-shims": {
+                  "version": "1.0.0",
+                  "from": "buffer-shims@>=1.0.0 <2.0.0"
+                },
+                "core-util-is": {
+                  "version": "1.0.2",
+                  "from": "core-util-is@>=1.0.0 <1.1.0"
+                },
+                "inherits": {
+                  "version": "2.0.1",
+                  "from": "inherits@>=2.0.1 <2.1.0"
+                },
+                "isarray": {
+                  "version": "1.0.0",
+                  "from": "isarray@>=1.0.0 <1.1.0"
+                },
+                "process-nextick-args": {
+                  "version": "1.0.7",
+                  "from": "process-nextick-args@>=1.0.6 <1.1.0"
+                },
+                "string_decoder": {
+                  "version": "0.10.31",
+                  "from": "string_decoder@>=0.10.0 <0.11.0"
+                },
+                "util-deprecate": {
+                  "version": "1.0.2",
+                  "from": "util-deprecate@>=1.0.1 <1.1.0"
+                }
+              }
             }
           }
         }

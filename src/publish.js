@@ -9,7 +9,7 @@ module.exports = $gulp => {
     dest: '.',
     git: {
       branch: 'master',
-      options: { args: ' -f' },
+      options: { args: ' --tag' },
       remote: { name: 'origin' }
     },
     name: 'publish',
@@ -32,9 +32,9 @@ module.exports = $gulp => {
 
     return {
       npm: () => {
-        $gulp.task(npmtask, options.tasks.concat([tagtask]), () => {
+        $gulp.task(npmtask, options.tasks.concat([tagtask]), (done) => {
           plugin.git.push(options.git.remote.name, options.git.branch, options.git.options)
-          spawn('npm', ['publish'], { stdio: 'inherit' }).on('close', done)
+          spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['publish'], { stdio: 'inherit' }).on('close', done)
         })
       }
     }

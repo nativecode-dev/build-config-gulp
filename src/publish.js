@@ -34,6 +34,7 @@ module.exports = $gulp => {
       npm: () => {
         $gulp.task(npmtask, options.tasks.concat([tagtask]), () => {
           plugin.git.push(options.git.remote.name, options.git.branch, options.git.options)
+          spawn('npm', ['publish'], { stdio: 'inherit' }).on('close', done)
         })
       }
     }

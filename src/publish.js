@@ -26,7 +26,6 @@ module.exports = $gulp => {
           .pipe($gulp.dest(options.dest))
           .pipe(plugin.git.commit(options.bump.type))
           .pipe(plugin.tagVersion())
-          .pipe(plugin.git.push(options.git.remote.name, options.git.branch, options.git.options))
       })
     }
   }

@@ -24,9 +24,9 @@ module.exports = $gulp => {
           .pipe(plugin.debug())
           .pipe(plugin.bump(options.bump))
           .pipe($gulp.dest(options.dest))
-          .pipe(plugin.git.commit(options.bump.type + ' ' + require('package.json').version))
+          .pipe(plugin.git.commit(options.bump.type))
           .pipe(plugin.tagVersion())
-          .pipe(plugin.git.push(options.git.remove.name, options.git.branch, options.git.options))
+          .pipe(plugin.git.push(options.git.remote.name, options.git.branch, options.git.options))
       })
     }
   }

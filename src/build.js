@@ -11,7 +11,7 @@ module.exports = $gulp => {
         ? {
           build: $filetypes[key],
           name: key,
-          src: key
+          src: key.split(',')
         }
         : $filetypes[key]
       var taskname = $name + ':' + (filetype.name || key)

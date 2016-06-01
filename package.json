@@ -1,7 +1,7 @@
 {
   "name": "gulp-deploy",
   "author": "support@nativecode.com",
-  "description": "",
+  "description": "Common build tasks for Gulp.",
   "license": "MIT",
   "main": "dist/index.js",
   "version": "1.0.0",
@@ -29,5 +29,8 @@
   },
   "peerDependencies": {
     "gulp": "^3.9.1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.nativecode.com/"
   }
 }

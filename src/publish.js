@@ -1,7 +1,5 @@
 module.exports = $gulp => {
   'use strict'
-  var bump = require('gulp-bump')
-  var git = require('gulp-git')
   var merge = require('merge')
   var plugin = require('gulp-load-plugins')($gulp)
 
@@ -18,22 +16,17 @@ module.exports = $gulp => {
     tasks: undefined
   }
 
-  function push(options) {
-    git.push(options.git.remote.name, options.git.branch, options.git.options, err => {
-      console.log(err)
-    })
-  }
-
   return $gulp.publish = {
     npm: function (options) {
       options = merge({}, defaults, options)
       return $gulp.task(options.name + ':npm', options.tasks, () => {
         return $gulp.src(options.src)
           .pipe(plugin.debug())
-          .pipe(bump(options.bump))
+          .pipe(plugin.bump(options.bump))
           .pipe($gulp.dest(options.dest))
-          .pipe(git.commit(options.bump.type + ' ' + require('package.json').version))
+          .pipe(plugin.git.commit(options.bump.type + ' ' + require('package.json').version))
           .pipe(plugin.tagVersion())
+          .pipe(plugin.git.push(options.git.remove.name, options.git.branch, options.git.options))
       })
     }
   }

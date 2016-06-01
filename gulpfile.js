@@ -1,28 +1,37 @@
 'use strict'
 
-var gulp = require('gulp-help')(require('./src/index.js')(require('gulp')))
-var plugin = require('gulp-load-plugins')(gulp)
+var gulp = (require('./src/index.js')(require('gulp')))
 
-gulp.task('default', ['build'])
-gulp.task('watch', ['build', 'watch:reload'])
-
+/**
+ * Configures our build pipeline for processing the JS
+ * files.
+ */
 gulp.build({
-  js: {
-    build: src => src
-      .pipe(plugin.cached())
-      .pipe(plugin.debug({ title: 'js:' }))
-      .pipe(plugin.jslint())
-      .pipe(plugin.babel({ presets: ['es2015'] }))
-      .pipe(plugin.uglify())
-      .pipe(gulp.dest('dist')),
-    src: ['src/**/*.js']
-  }
+  'src/**/*.js': src => src
+    .pipe(gulp.use.cached())
+    .pipe(gulp.use.debug({ title: 'js:' }))
+    .pipe(gulp.use.jslint())
+    .pipe(gulp.use.babel({ presets: ['es2015'] }))
+    .pipe(gulp.use.uglify())
+    .pipe(gulp.dest('dist'))
 })
 
+/**
+ * Enable publishing to our private NPM registry.
+ */
 gulp.publish({ tasks: ['build'] }).npm()
 
+/**
+ * Enable file watchers, which includes watching
+ * the gulpfile.js itself.
+ */
 gulp.reload({
-  'gulpfile.json': [],
   'package.json': ['build'],
-  'src/**/*.js': ['build:js']
+  'src/**/*.js': ['build:src/**/*.js']
 }, ['build'])
+
+/**
+ * Common tasks wrapped into nice names.
+ */
+gulp.task('default', ['build'])
+gulp.task('watch', ['build', 'watch:reload'])

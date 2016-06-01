@@ -19,8 +19,10 @@ module.exports = $gulp => {
 
   return (options) => {
     options = merge({}, defaults, options)
+    var gittask = options.name + ':commit'
     var npmtask = options.name + ':npm'
     var preptask = options.name + ':prep'
+    var pubtask = options.name + ':publish'
     var tagtask = options.name + ':tag'
 
     $gulp.task(tagtask, options.tasks, () => {
@@ -42,11 +44,19 @@ module.exports = $gulp => {
         .pipe(plugin.tagVersion())
     })
 
+    $gulp.task(gittask, () => {
+      return $gulp.src(options.src)
+        .pipe(plugin.git.push(options.git.remote.name, options.git.branch, options.git.options))
+    })
+
+    $gulp.task(pubtask, (done) => {
+      spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['publish'], { stdio: 'inherit' }).on('close', done)
+    })
+
     return {
       npm: () => {
-        $gulp.task(npmtask, [tagtask], (done) => {
-          plugin.git.push(options.git.remote.name, options.git.branch, options.git.options)
-          spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['publish'], { stdio: 'inherit' }).on('close', done)
+        $gulp.task(npmtask, [tagtask], () => {
+          return $gulp.start([gittask, pubtask])
         })
       }
     }

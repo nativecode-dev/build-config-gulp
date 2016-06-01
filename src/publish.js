@@ -14,7 +14,7 @@ module.exports = $gulp => {
       remote: { name: 'origin' }
     },
     name: 'publish',
-    src: 'package.json',
+    src: ['bower.json', 'package.json'],
     tasks: undefined
   }
 
@@ -31,8 +31,9 @@ module.exports = $gulp => {
         return $gulp.src(options.src)
           .pipe(plugin.debug())
           .pipe(bump(options.bump))
-          .on('complete', () => push(options))
           .pipe($gulp.dest(options.dest))
+          .pipe(git.commit(options.bump.type + ' ' + require('package.json').version))
+          .pipe(plugin.tagVersion())
       })
     }
   }

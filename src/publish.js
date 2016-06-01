@@ -24,6 +24,8 @@ module.exports = $gulp => {
     $gulp.task(tagtask, () => {
       return $gulp.src(options.src)
         .pipe(plugin.debug())
+        .pipe(plugin.filter('package.json'))
+        .pipe(plugin.shrinkwrap())
         .pipe(plugin.bump(options.bump))
         .pipe($gulp.dest(options.dest))
         .pipe(plugin.git.commit(options.bump.type))

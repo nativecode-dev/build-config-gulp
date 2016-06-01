@@ -16,10 +16,7 @@ gulp.build({
       .pipe(plugin.uglify())
       .pipe(gulp.dest('dist')),
     src: ['src/**/*.js']
-  },
-  'package.json': src => src
-    .pipe(plugin.shrinkwrap())
-    .pipe(gulp.dest('.'))
+  }
 })
 
 gulp.publish({ tasks: ['build'] }).npm()

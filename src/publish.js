@@ -23,12 +23,13 @@ module.exports = $gulp => {
     var preptask = options.name + ':prep'
     var tagtask = options.name + ':tag'
 
-    $gulp.task(tagtask, () => {
+    $gulp.task(tagtask, options.tasks, () => {
       var filter = plugin.filter('package.json', { restore: true })
       return $gulp.src(options.src)
         .pipe(plugin.debug())
         // Version bump by type.
         .pipe(plugin.bump(options.bump))
+        .pipe($gulp.dest(options.dest))
         // Filter, shrinkwrap, then restore the context.
         .pipe(filter)
         .pipe(plugin.shrinkwrap())
@@ -43,7 +44,7 @@ module.exports = $gulp => {
 
     return {
       npm: () => {
-        $gulp.task(npmtask, options.tasks.concat([tagtask]), (done) => {
+        $gulp.task(npmtask, [tagtask], (done) => {
           plugin.git.push(options.git.remote.name, options.git.branch, options.git.options)
           spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['publish'], { stdio: 'inherit' }).on('close', done)
         })

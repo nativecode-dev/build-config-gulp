@@ -31,5 +31,5 @@
   "publishConfig": {
     "registry": "https://npm.nativecode.com/"
   },
-  "version": "1.0.19"
+  "version": "1.0.20"
 }

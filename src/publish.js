@@ -28,7 +28,7 @@ module.exports = $gulp => {
     $gulp.task(tagtask, options.tasks, () => {
       var filter = plugin.filter('package.json', { restore: true })
       return $gulp.src(options.src)
-        .pipe(plugin.debug())
+        .pipe(plugin.debug({ title: tagtask }))
         // Version bump by type.
         .pipe(plugin.bump(options.bump))
         .pipe($gulp.dest(options.dest))

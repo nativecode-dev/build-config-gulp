@@ -10,12 +10,11 @@ module.exports = $gulp => {
 
     return $gulp.task('watch:reload', ['watch:rebuild'], () => {
       var spawned = undefined
-      var glob = $watches.globs || 'gulpfile.js'
-      $gulp.watch(glob, () => {
+      $gulp.watch('gulpfile.js', () => {
         var options = process.argv.slice(1, 2).concat($tasks || [], ['watch:rebuild']),
+          count = watchers ? watchers.length - 1 : 0,
           exec = process.argv[0]
 
-        var count = watchers ? watchers.length - 1 : 0
         while (count > 0) {
           watchers[count].end().remove()
           count--

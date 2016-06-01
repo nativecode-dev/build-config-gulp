@@ -8,8 +8,7 @@ var gulp = (require('./src/index.js')(require('gulp')))
  */
 gulp.build({
   'src/**/*.js': src => src
-    .pipe(gulp.use.cached())
-    .pipe(gulp.use.debug({ title: 'js:' }))
+    .pipe(gulp.use.cached('js'))
     .pipe(gulp.use.jslint())
     .pipe(gulp.use.babel({ presets: ['es2015'] }))
     .pipe(gulp.use.uglify())

@@ -7,7 +7,7 @@ module.exports = $gulp => {
   $gulp = $gulp || require('gulp')
 
   /**
-   * @returns PackageOptions
+   * @type PackageOptions
    * @param dest {string}             - destination path, defaults to 'dist'.
    * @param src {array|string}        - array or string of globs.
    */
@@ -22,7 +22,7 @@ module.exports = $gulp => {
     var filename = _package.name + '.' + _package.version + '.zip'
     return $gulp.task('package', depends, () => {
       return $gulp.src(options.src)
-        .pipe(plugin.debug())
+        .pipe(plugin.debug({ title: 'package' }))
         .pipe(zip(options.dest))
         .pipe($gulp.dest(options.dest))
     })

@@ -19,7 +19,7 @@ module.exports = $gulp => {
 
       depends.push(taskname)
       $gulp.task(taskname, filetype.tasks || [], () => {
-        return filetype.build($gulp.src(filetype.src).pipe(plugin.cached()).pipe(plugin.debug()))
+        return filetype.build($gulp.src(filetype.src).pipe(plugin.cached()).pipe(plugin.debug({ title: taskname })))
       })
     })
     return $gulp.task($name, depends)

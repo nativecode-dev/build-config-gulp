@@ -18,7 +18,10 @@ gulp.build({
 /**
  * Enable publishing to our private NPM registry.
  */
-gulp.publish({ tasks: ['build'] }).npm()
+gulp.publish({
+  src: ['package.json', 'npm-shrinkwrap.json'],
+  tasks: ['build']
+}).npm()
 
 /**
  * Enable file watchers, which includes watching

@@ -34,6 +34,7 @@ module.exports = (gulp, plugin, util) => {
         .pipe(filter.restore)
         .pipe(gulp.dest(options.dest))
         // Commit changes.
+        .pipe(plugin.debug({ title: 'git:' }))
         .pipe(plugin.git.commit(options.bump.type))
         // Tag package version.
         .pipe(filter)

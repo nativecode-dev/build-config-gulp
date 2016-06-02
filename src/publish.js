@@ -15,6 +15,7 @@ module.exports = (gulp, plugin, util) => {
 
   return (options) => {
     options = util.merge({}, defaults, options)
+    var committask = options.name + ':commit'
     var gittask = options.name + ':push'
     var npmtask = options.name + ':npm'
     var preptask = options.name + ':prep'
@@ -33,12 +34,16 @@ module.exports = (gulp, plugin, util) => {
         .pipe(plugin.shrinkwrap())
         .pipe(filter.restore)
         .pipe(gulp.dest(options.dest))
-        // Commit changes.
-        .pipe(plugin.debug({ title: 'git:' }))
-        .pipe(plugin.git.commit(options.bump.type))
         // Tag package version.
         .pipe(filter)
         .pipe(plugin.tagVersion())
+    })
+
+    gulp.task(committask, [tagtask], () => {
+      return gulp.src(options.src)
+        // Commit changes.
+        .pipe(plugin.debug({ title: 'git:' }))
+        .pipe(plugin.git.commit(options.bump.type))
     })
 
     return {
@@ -51,7 +56,7 @@ module.exports = (gulp, plugin, util) => {
           util.spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['publish'], { stdio: 'inherit' }).on('close', done)
         })
 
-        gulp.task(npmtask, [tagtask], () => {
+        gulp.task(npmtask, [committask], () => {
           return gulp.start([gittask, pubtask])
         })
       }

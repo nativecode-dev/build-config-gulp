@@ -40,16 +40,16 @@ module.exports = (gulp, plugin, util) => {
         .pipe(plugin.tagVersion())
     })
 
-    gulp.task(gittask, [tagtask], () => {
-      plugin.git.push(options.git.remote.name, options.git.branch, options.git.options)
-    })
-
-    gulp.task(pubtask, [gittask], (done) => {
-      util.spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['publish'], { stdio: 'inherit' }).on('close', done)
-    })
-
     return {
       npm: () => {
+        gulp.task(gittask, () => {
+          plugin.git.push(options.git.remote.name, options.git.branch, options.git.options)
+        })
+
+        gulp.task(pubtask, [gittask], (done) => {
+          util.spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['publish'], { stdio: 'inherit' }).on('close', done)
+        })
+
         gulp.task(npmtask, [tagtask], () => {
           return gulp.start([gittask, pubtask])
         })

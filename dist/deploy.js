@@ -1,1 +1,1 @@
-"use strict";module.exports=function(t){return t.deploy=function(){}};
+"use strict";module.exports=function(o,t,e){var n={ssh:{events:{configure:function(){},send:function(){}},privateKeyPath:void 0,options:{host:void 0,path:void 0,port:22}}};return o.deploy={ssh:function(o){o=e.merge({},o,n)}}};

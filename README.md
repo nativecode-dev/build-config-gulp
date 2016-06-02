@@ -55,7 +55,6 @@ clean names.
 ```
 name: {
     build: function(gulp),
-    name: string,
     src: array | glob
 }
 ```

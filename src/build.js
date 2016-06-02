@@ -1,10 +1,6 @@
-module.exports = $gulp => {
+module.exports = (gulp, plugin, util) => {
   'use strict'
-  var merge = require('merge')
-  var plugin = require('gulp-load-plugins')($gulp)
-  $gulp = $gulp || require('gulp')
-
-  return $gulp.build = function ($filetypes, $name) {
+  return gulp.build = function ($filetypes, $name) {
     $name = $name || 'build'
     var depends = []
     Object.keys($filetypes).map((key) => {
@@ -16,12 +12,14 @@ module.exports = $gulp => {
         }
         : $filetypes[key]
       var taskname = $name + ':' + (filetype.name || key)
-
       depends.push(taskname)
-      $gulp.task(taskname, filetype.tasks || [], () => {
-        return filetype.build($gulp.src(filetype.src).pipe(plugin.cached()).pipe(plugin.debug({ title: taskname })))
+      gulp.task(taskname, filetype.tasks || [], () => {
+        var pipe = gulp.src(filetype.src)
+          .pipe(plugin.cached())
+          .pipe(plugin.debug({ title: taskname }))
+        return filetype.build(pipe)
       })
     })
-    return $gulp.task($name, depends)
+    return gulp.task($name, depends)
   }
 }

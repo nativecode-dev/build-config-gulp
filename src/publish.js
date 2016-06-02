@@ -1,9 +1,5 @@
-module.exports = $gulp => {
+module.exports = (gulp, plugin, util) => {
   'use strict'
-  var merge = require('merge')
-  var plugin = require('gulp-load-plugins')($gulp)
-  var spawn = require('child_process').spawn;
-
   var defaults = {
     bump: { type: 'patch' },
     dest: '.',
@@ -18,25 +14,25 @@ module.exports = $gulp => {
   }
 
   return (options) => {
-    options = merge({}, defaults, options)
+    options = util.merge({}, defaults, options)
     var gittask = options.name + ':push'
     var npmtask = options.name + ':npm'
     var preptask = options.name + ':prep'
-    var pubtask = options.name + ':publish'
+    var pubtask = options.name
     var tagtask = options.name + ':tag'
 
-    $gulp.task(tagtask, options.tasks, () => {
+    gulp.task(tagtask, options.tasks, () => {
       var filter = plugin.filter('package.json', { restore: true })
-      return $gulp.src(options.src)
+      return gulp.src(options.src)
         .pipe(plugin.debug({ title: tagtask }))
         // Version bump by type.
         .pipe(plugin.bump(options.bump))
-        .pipe($gulp.dest(options.dest))
+        .pipe(gulp.dest(options.dest))
         // Filter, shrinkwrap, then restore the context.
         .pipe(filter)
         .pipe(plugin.shrinkwrap())
         .pipe(filter.restore)
-        .pipe($gulp.dest(options.dest))
+        .pipe(gulp.dest(options.dest))
         // Commit changes.
         .pipe(plugin.git.commit(options.bump.type))
         // Tag package version.
@@ -44,18 +40,18 @@ module.exports = $gulp => {
         .pipe(plugin.tagVersion())
     })
 
-    $gulp.task(gittask, () => {
+    gulp.task(gittask, [tagtask], () => {
       plugin.git.push(options.git.remote.name, options.git.branch, options.git.options)
     })
 
-    $gulp.task(pubtask, (done) => {
-      spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['publish'], { stdio: 'inherit' }).on('close', done)
+    gulp.task(pubtask, [gittask], (done) => {
+      util.spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['publish'], { stdio: 'inherit' }).on('close', done)
     })
 
     return {
       npm: () => {
-        $gulp.task(npmtask, [tagtask], () => {
-          return $gulp.start([gittask, pubtask])
+        gulp.task(npmtask, [tagtask], () => {
+          return gulp.start([gittask, pubtask])
         })
       }
     }

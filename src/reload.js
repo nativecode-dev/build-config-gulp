@@ -1,19 +1,19 @@
-module.exports = $gulp => {
+module.exports = (gulp, plugin, util) => {
   'use strict'
   var watchers = []
-  return $gulp.reload = function ($watches, $tasks) {
-    $gulp.task('watch:rebuild', () => {
+  gulp.reload = function ($watches, $tasks) {
+    gulp.task('watch:rebuild', () => {
       Object.keys($watches).map((glob) => {
-        watchers.push($gulp.watch(glob, $watches[glob]))
+        watchers.push(gulp.watch(glob, $watches[glob]))
       })
     })
 
-    return $gulp.task('watch:reload', ['watch:rebuild'], () => {
-      var spawned = undefined
-      $gulp.watch('gulpfile.js', () => {
-        var options = process.argv.slice(1, 2).concat($tasks || [], ['watch:rebuild']),
-          count = watchers ? watchers.length - 1 : 0,
-          exec = process.argv[0]
+    return gulp.task('watch:reload', ['watch:rebuild'], () => {
+      var spawned = null
+      gulp.watch('gulpfile.js', () => {
+        var options = process.argv.slice(1, 2).concat($tasks || [], ['watch:rebuild'])
+        var count = watchers ? watchers.length - 1 : 0
+        var exec = process.argv[0]
 
         while (count > 0) {
           watchers[count].end().remove()
@@ -32,4 +32,5 @@ module.exports = $gulp => {
       })
     })
   }
+  return gulp.reload
 }

@@ -4,30 +4,30 @@ module.exports = (gulp, plugin, util) => {
     ssh: {
       events: {
         configure: () => { },
-        send: () => { },
+        send: () => { }
       },
       privateKeyPath: undefined,
-      options: {
+      remote: {
         host: undefined,
         path: undefined,
         port: 22
       }
     }
   }
-  return gulp.deploy = {
+  gulp.deploy = {
     ssh: options => {
       options = util.merge({}, options, defaults)
-      function connect() {
+      function connect () {
         return plugin.ssh({
           ignoreErrors: false,
-          sshConfig: util.merge({}, options.ssh.options, {
+          sshConfig: util.merge({}, options.ssh.remote, {
             privateKey: options.ssh.privateKeyPath
-              ? util.fs.readFileSync(options.ssh.privateKeyPath).toString()
+              ? util.string(options.ssh.privateKeyPath)
               : undefined
           })
         })
       }
-
     }
   }
+  return gulp.deploy
 }

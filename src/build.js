@@ -1,6 +1,6 @@
 module.exports = (gulp, plugin, util) => {
   'use strict'
-  return gulp.build = function ($filetypes, $name) {
+  gulp.build = function ($filetypes, $name) {
     $name = $name || 'build'
     var depends = []
     Object.keys($filetypes).map((key) => {
@@ -22,4 +22,5 @@ module.exports = (gulp, plugin, util) => {
     })
     return gulp.task($name, depends)
   }
+  return gulp.build
 }

@@ -1,13 +1,29 @@
 module.exports = gulp => {
   'use strict'
   // Required dependencies.
-  var help = require('gulp-help')(gulp)
   var plugin = require('gulp-load-plugins')(gulp)
   // Common utility functions.
   var util = {
+    expand: (template, context, options) => {
+      var clean = value => options.quote ? options.quote + value + options.quote : value
+      while (template.indexOf('{{') >= 0) {
+        template = template.replace(/\{\{([\w,_,-,\.]+)\}\}/g, (item, key) => {
+          var property = context[key]
+          if (property instanceof Array) {
+            return property.map(clean).join(',')
+          } else if (property instanceof Function) {
+            return property().map(clean).join(',')
+          }
+          return property || item
+        })
+      }
+      return template
+    },
+    help: require('gulp-help')(gulp),
     fs: require('fs'),
     merge: require('merge'),
     path: require('path'),
+    string: filename => util.fs.readFileSync(filename).toString(),
     spawn: require('child_process').spawn
   }
   util.package = (function () {
@@ -16,7 +32,7 @@ module.exports = gulp => {
       return JSON.parse(util.fs.readFileSync('package.json'))
     }
     return _package
-  } ())
+  }())
   // Task creation methods.
   gulp.build = require('./build.js')(gulp, plugin, util)
   gulp.deploy = require('./deploy.js')(gulp, plugin, util)

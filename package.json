@@ -21,6 +21,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-jslint": "^1.0.1",
     "gulp-shrinkwrap": "^2.0.1",
+    "gulp-standard": "^7.0.1",
     "gulp-uglify": "^1.5.3"
   },
   "license": "MIT",

@@ -18,7 +18,6 @@ module.exports = (gulp, plugin, util) => {
     var committask = options.name + ':commit'
     var gittask = options.name + ':push'
     var npmtask = options.name + ':npm'
-    var preptask = options.name + ':prep'
     var pubtask = options.name
     var tagtask = options.name + ':tag'
 

@@ -25,6 +25,7 @@ module.exports = (gulp, plugin, util) => {
       var filter = plugin.filter('package.json', { restore: true })
       return gulp.src(options.src)
         .pipe(plugin.debug({ title: tagtask }))
+        .pipe(plugin.plumber())
         // Version bump by type.
         .pipe(plugin.bump(options.bump))
         .pipe(gulp.dest(options.dest))
@@ -42,6 +43,7 @@ module.exports = (gulp, plugin, util) => {
       return gulp.src(options.src)
         // Commit changes.
         .pipe(plugin.debug({ title: 'git:' }))
+        .pipe(plugin.plumber())
         .pipe(plugin.git.commit(options.bump.type))
     })
 

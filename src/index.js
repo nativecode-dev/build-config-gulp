@@ -22,6 +22,7 @@ module.exports = gulp => {
     help: require('gulp-help')(gulp),
     fs: require('fs'),
     merge: require('merge'),
+    name: (name, parts) => [name].concat(parts).join(':'),
     path: require('path'),
     string: filename => util.fs.readFileSync(filename).toString(),
     spawn: require('child_process').spawn

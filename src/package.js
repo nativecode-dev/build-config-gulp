@@ -26,6 +26,7 @@ module.exports = (gulp, plugin, util) => {
       var filename = options.format(util.package.name, util.package.version)
       return gulp.src(options.src)
         .pipe(plugin.debug({ title: options.name }))
+        .pipe(plugin.plumber())
         .pipe(plugin.zip(filename))
         .pipe(gulp.dest(options.dest))
     })

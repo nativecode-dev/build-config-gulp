@@ -1,17 +1,17 @@
 module.exports = (gulp, plugin, util) => {
   'use strict'
   var watchers = []
-  gulp.reload = function ($watches, $tasks) {
+  gulp.reload = function (depends, options) {
     gulp.task('watch:rebuild', () => {
-      Object.keys($watches).map((glob) => {
-        watchers.push(gulp.watch(glob, $watches[glob]))
+      Object.keys(options).map((glob) => {
+        watchers.push(gulp.watch(glob, options[glob]))
       })
     })
 
     return gulp.task('watch:reload', ['watch:rebuild'], () => {
       var spawned = null
       gulp.watch('gulpfile.js', () => {
-        var options = process.argv.slice(1, 2).concat($tasks || [], ['watch:rebuild'])
+        var options = process.argv.slice(1, 2).concat(depends || [], ['watch:rebuild'])
         var count = watchers ? watchers.length - 1 : 0
         var exec = process.argv[0]
 

@@ -254,11 +254,11 @@
                   "dependencies": {
                     "brace-expansion": {
                       "version": "1.1.4",
-                      "from": "brace-expansion@1.1.4",
+                      "from": "brace-expansion@>=1.0.0 <2.0.0",
                       "dependencies": {
                         "balanced-match": {
                           "version": "0.4.1",
-                          "from": "balanced-match@0.4.1"
+                          "from": "balanced-match@>=0.4.1 <0.5.0"
                         },
                         "concat-map": {
                           "version": "0.0.1",
@@ -504,7 +504,7 @@
                 },
                 "escape-string-regexp": {
                   "version": "1.0.5",
-                  "from": "escape-string-regexp@>=1.0.2 <2.0.0"
+                  "from": "escape-string-regexp@1.0.5"
                 },
                 "has-ansi": {
                   "version": "2.0.0",
@@ -512,7 +512,7 @@
                   "dependencies": {
                     "ansi-regex": {
                       "version": "2.0.0",
-                      "from": "ansi-regex@>=2.0.0 <3.0.0"
+                      "from": "ansi-regex@2.0.0"
                     }
                   }
                 },
@@ -522,13 +522,13 @@
                   "dependencies": {
                     "ansi-regex": {
                       "version": "2.0.0",
-                      "from": "ansi-regex@>=2.0.0 <3.0.0"
+                      "from": "ansi-regex@2.0.0"
                     }
                   }
                 },
                 "supports-color": {
                   "version": "2.0.0",
-                  "from": "supports-color@>=2.0.0 <3.0.0"
+                  "from": "supports-color@2.0.0"
                 }
               }
             },
@@ -578,7 +578,7 @@
                     },
                     "minimist": {
                       "version": "1.2.0",
-                      "from": "minimist@>=1.1.0 <2.0.0"
+                      "from": "minimist@1.2.0"
                     },
                     "normalize-package-data": {
                       "version": "2.3.5",
@@ -964,7 +964,7 @@
                 },
                 "escape-string-regexp": {
                   "version": "1.0.5",
-                  "from": "escape-string-regexp@>=1.0.2 <2.0.0"
+                  "from": "escape-string-regexp@1.0.5"
                 },
                 "has-ansi": {
                   "version": "0.1.0",
@@ -1016,7 +1016,7 @@
                     },
                     "decamelize": {
                       "version": "1.2.0",
-                      "from": "decamelize@1.2.0"
+                      "from": "decamelize@>=1.0.0 <2.0.0"
                     },
                     "loud-rejection": {
                       "version": "1.3.0",
@@ -1218,7 +1218,7 @@
                               "dependencies": {
                                 "is-finite": {
                                   "version": "1.0.1",
-                                  "from": "is-finite@>=1.0.0 <2.0.0",
+                                  "from": "is-finite@1.0.1",
                                   "dependencies": {
                                     "number-is-nan": {
                                       "version": "1.0.0",
@@ -1534,27 +1534,27 @@
               "dependencies": {
                 "core-util-is": {
                   "version": "1.0.2",
-                  "from": "core-util-is@>=1.0.0 <1.1.0"
+                  "from": "core-util-is@1.0.2"
                 },
                 "inherits": {
                   "version": "2.0.1",
-                  "from": "inherits@>=2.0.1 <2.1.0"
+                  "from": "inherits@2.0.1"
                 },
                 "isarray": {
                   "version": "1.0.0",
-                  "from": "isarray@>=1.0.0 <1.1.0"
+                  "from": "isarray@1.0.0"
                 },
                 "process-nextick-args": {
                   "version": "1.0.7",
-                  "from": "process-nextick-args@>=1.0.6 <1.1.0"
+                  "from": "process-nextick-args@1.0.7"
                 },
                 "string_decoder": {
                   "version": "0.10.31",
-                  "from": "string_decoder@>=0.10.0 <0.11.0"
+                  "from": "string_decoder@0.10.31"
                 },
                 "util-deprecate": {
                   "version": "1.0.2",
-                  "from": "util-deprecate@>=1.0.1 <1.1.0"
+                  "from": "util-deprecate@1.0.2"
                 }
               }
             },
@@ -1760,302 +1760,6 @@
         }
       }
     },
-    "gulp-load-plugins": {
-      "version": "1.2.4",
-      "from": "gulp-load-plugins@1.2.4",
-      "dependencies": {
-        "array-unique": {
-          "version": "0.2.1",
-          "from": "array-unique@0.2.1"
-        },
-        "fancy-log": {
-          "version": "1.2.0",
-          "from": "fancy-log@1.2.0",
-          "dependencies": {
-            "chalk": {
-              "version": "1.1.3",
-              "from": "chalk@>=1.1.1 <2.0.0",
-              "dependencies": {
-                "ansi-styles": {
-                  "version": "2.2.1",
-                  "from": "ansi-styles@>=2.2.1 <3.0.0"
-                },
-                "escape-string-regexp": {
-                  "version": "1.0.5",
-                  "from": "escape-string-regexp@>=1.0.2 <2.0.0"
-                },
-                "has-ansi": {
-                  "version": "2.0.0",
-                  "from": "has-ansi@>=2.0.0 <3.0.0",
-                  "dependencies": {
-                    "ansi-regex": {
-                      "version": "2.0.0",
-                      "from": "ansi-regex@>=2.0.0 <3.0.0"
-                    }
-                  }
-                },
-                "strip-ansi": {
-                  "version": "3.0.1",
-                  "from": "strip-ansi@>=3.0.0 <4.0.0",
-                  "dependencies": {
-                    "ansi-regex": {
-                      "version": "2.0.0",
-                      "from": "ansi-regex@>=2.0.0 <3.0.0"
-                    }
-                  }
-                },
-                "supports-color": {
-                  "version": "2.0.0",
-                  "from": "supports-color@>=2.0.0 <3.0.0"
-                }
-              }
-            },
-            "time-stamp": {
-              "version": "1.0.1",
-              "from": "time-stamp@>=1.0.0 <2.0.0"
-            }
-          }
-        },
-        "findup-sync": {
-          "version": "0.4.1",
-          "from": "findup-sync@0.4.1",
-          "dependencies": {
-            "fs-exists-sync": {
-              "version": "0.1.0",
-              "from": "fs-exists-sync@0.1.0"
-            },
-            "is-glob": {
-              "version": "2.0.1",
-              "from": "is-glob@2.0.1",
-              "dependencies": {
-                "is-extglob": {
-                  "version": "1.0.0",
-                  "from": "is-extglob@1.0.0"
-                }
-              }
-            },
-            "resolve-dir": {
-              "version": "0.1.0",
-              "from": "resolve-dir@0.1.0",
-              "dependencies": {
-                "expand-tilde": {
-                  "version": "1.2.1",
-                  "from": "expand-tilde@1.2.1",
-                  "dependencies": {
-                    "os-homedir": {
-                      "version": "1.0.1",
-                      "from": "os-homedir@1.0.1"
-                    }
-                  }
-                },
-                "global-modules": {
-                  "version": "0.2.1",
-                  "from": "global-modules@0.2.1",
-                  "dependencies": {
-                    "global-prefix": {
-                      "version": "0.1.3",
-                      "from": "global-prefix@0.1.3"
-                    },
-                    "is-windows": {
-                      "version": "0.1.1",
-                      "from": "is-windows@0.1.1"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "gulplog": {
-          "version": "1.0.0",
-          "from": "gulplog@1.0.0",
-          "dependencies": {
-            "glogg": {
-              "version": "1.0.0",
-              "from": "glogg@1.0.0",
-              "dependencies": {
-                "sparkles": {
-                  "version": "1.0.0",
-                  "from": "sparkles@1.0.0"
-                }
-              }
-            }
-          }
-        },
-        "has-gulplog": {
-          "version": "0.1.0",
-          "from": "has-gulplog@0.1.0",
-          "dependencies": {
-            "sparkles": {
-              "version": "1.0.0",
-              "from": "sparkles@1.0.0"
-            }
-          }
-        },
-        "micromatch": {
-          "version": "2.3.8",
-          "from": "micromatch@2.3.8",
-          "dependencies": {
-            "arr-diff": {
-              "version": "2.0.0",
-              "from": "arr-diff@2.0.0",
-              "dependencies": {
-                "arr-flatten": {
-                  "version": "1.0.1",
-                  "from": "arr-flatten@1.0.1"
-                }
-              }
-            },
-            "braces": {
-              "version": "1.8.5",
-              "from": "braces@1.8.5",
-              "dependencies": {
-                "expand-range": {
-                  "version": "1.8.2",
-                  "from": "expand-range@1.8.2",
-                  "dependencies": {
-                    "fill-range": {
-                      "version": "2.2.3",
-                      "from": "fill-range@2.2.3",
-                      "dependencies": {
-                        "is-number": {
-                          "version": "2.1.0",
-                          "from": "is-number@2.1.0"
-                        },
-                        "isobject": {
-                          "version": "2.1.0",
-                          "from": "isobject@2.1.0",
-                          "dependencies": {
-                            "isarray": {
-                              "version": "1.0.0",
-                              "from": "isarray@1.0.0"
-                            }
-                          }
-                        },
-                        "randomatic": {
-                          "version": "1.1.5",
-                          "from": "randomatic@1.1.5"
-                        },
-                        "repeat-string": {
-                          "version": "1.5.4",
-                          "from": "repeat-string@1.5.4"
-                        }
-                      }
-                    }
-                  }
-                },
-                "preserve": {
-                  "version": "0.2.0",
-                  "from": "preserve@0.2.0"
-                },
-                "repeat-element": {
-                  "version": "1.1.2",
-                  "from": "repeat-element@1.1.2"
-                }
-              }
-            },
-            "expand-brackets": {
-              "version": "0.1.5",
-              "from": "expand-brackets@0.1.5",
-              "dependencies": {
-                "is-posix-bracket": {
-                  "version": "0.1.1",
-                  "from": "is-posix-bracket@0.1.1"
-                }
-              }
-            },
-            "extglob": {
-              "version": "0.3.2",
-              "from": "extglob@0.3.2"
-            },
-            "filename-regex": {
-              "version": "2.0.0",
-              "from": "filename-regex@2.0.0"
-            },
-            "is-extglob": {
-              "version": "1.0.0",
-              "from": "is-extglob@1.0.0"
-            },
-            "is-glob": {
-              "version": "2.0.1",
-              "from": "is-glob@2.0.1"
-            },
-            "kind-of": {
-              "version": "3.0.3",
-              "from": "kind-of@3.0.3",
-              "dependencies": {
-                "is-buffer": {
-                  "version": "1.1.3",
-                  "from": "is-buffer@1.1.3"
-                }
-              }
-            },
-            "normalize-path": {
-              "version": "2.0.1",
-              "from": "normalize-path@2.0.1"
-            },
-            "object.omit": {
-              "version": "2.0.0",
-              "from": "object.omit@2.0.0",
-              "dependencies": {
-                "for-own": {
-                  "version": "0.1.4",
-                  "from": "for-own@0.1.4",
-                  "dependencies": {
-                    "for-in": {
-                      "version": "0.1.5",
-                      "from": "for-in@0.1.5"
-                    }
-                  }
-                },
-                "is-extendable": {
-                  "version": "0.1.1",
-                  "from": "is-extendable@0.1.1"
-                }
-              }
-            },
-            "parse-glob": {
-              "version": "3.0.4",
-              "from": "parse-glob@3.0.4",
-              "dependencies": {
-                "glob-base": {
-                  "version": "0.3.0",
-                  "from": "glob-base@0.3.0",
-                  "dependencies": {
-                    "glob-parent": {
-                      "version": "2.0.0",
-                      "from": "glob-parent@2.0.0"
-                    }
-                  }
-                },
-                "is-dotfile": {
-                  "version": "1.0.2",
-                  "from": "is-dotfile@1.0.2"
-                }
-              }
-            },
-            "regex-cache": {
-              "version": "0.4.3",
-              "from": "regex-cache@0.4.3",
-              "dependencies": {
-                "is-equal-shallow": {
-                  "version": "0.1.3",
-                  "from": "is-equal-shallow@0.1.3"
-                },
-                "is-primitive": {
-                  "version": "2.0.0",
-                  "from": "is-primitive@2.0.0"
-                }
-              }
-            }
-          }
-        },
-        "resolve": {
-          "version": "1.1.7",
-          "from": "resolve@1.1.7"
-        }
-      }
-    },
     "gulp-plumber": {
       "version": "1.1.0",
       "from": "gulp-plumber@1.1.0",
@@ -2070,11 +1774,11 @@
               "dependencies": {
                 "core-util-is": {
                   "version": "1.0.2",
-                  "from": "core-util-is@>=1.0.0 <1.1.0"
+                  "from": "core-util-is@1.0.2"
                 },
                 "inherits": {
                   "version": "2.0.1",
-                  "from": "inherits@>=2.0.1 <2.1.0"
+                  "from": "inherits@2.0.1"
                 },
                 "isarray": {
                   "version": "1.0.0",
@@ -2082,15 +1786,15 @@
                 },
                 "process-nextick-args": {
                   "version": "1.0.7",
-                  "from": "process-nextick-args@>=1.0.6 <1.1.0"
+                  "from": "process-nextick-args@1.0.7"
                 },
                 "string_decoder": {
                   "version": "0.10.31",
-                  "from": "string_decoder@>=0.10.0 <0.11.0"
+                  "from": "string_decoder@0.10.31"
                 },
                 "util-deprecate": {
                   "version": "1.0.2",
-                  "from": "util-deprecate@>=1.0.1 <1.1.0"
+                  "from": "util-deprecate@1.0.2"
                 }
               }
             },
@@ -2934,11 +2638,11 @@
                 },
                 "string_decoder": {
                   "version": "0.10.31",
-                  "from": "string_decoder@>=0.10.0 <0.11.0"
+                  "from": "string_decoder@0.10.31"
                 },
                 "inherits": {
                   "version": "2.0.1",
-                  "from": "inherits@>=2.0.1 <2.1.0"
+                  "from": "inherits@2.0.1"
                 }
               }
             },
@@ -2960,11 +2664,11 @@
           "dependencies": {
             "readable-stream": {
               "version": "2.0.6",
-              "from": "readable-stream@2.0.6",
+              "from": "readable-stream@>=2.0.0 <2.1.0",
               "dependencies": {
                 "core-util-is": {
                   "version": "1.0.2",
-                  "from": "core-util-is@1.0.2"
+                  "from": "core-util-is@>=1.0.0 <1.1.0"
                 },
                 "inherits": {
                   "version": "2.0.1",
@@ -2972,7 +2676,7 @@
                 },
                 "isarray": {
                   "version": "1.0.0",
-                  "from": "isarray@1.0.0"
+                  "from": "isarray@>=1.0.0 <1.1.0"
                 },
                 "process-nextick-args": {
                   "version": "1.0.7",
@@ -2990,7 +2694,7 @@
             },
             "xtend": {
               "version": "4.0.1",
-              "from": "xtend@4.0.1"
+              "from": "xtend@>=4.0.0 <4.1.0"
             }
           }
         },
@@ -3042,7 +2746,7 @@
                 },
                 "escape-string-regexp": {
                   "version": "1.0.5",
-                  "from": "escape-string-regexp@>=1.0.2 <2.0.0"
+                  "from": "escape-string-regexp@1.0.5"
                 },
                 "has-ansi": {
                   "version": "0.1.0",
@@ -3094,7 +2798,7 @@
                     },
                     "decamelize": {
                       "version": "1.2.0",
-                      "from": "decamelize@1.2.0"
+                      "from": "decamelize@>=1.0.0 <2.0.0"
                     },
                     "loud-rejection": {
                       "version": "1.3.0",
@@ -3296,7 +3000,7 @@
                               "dependencies": {
                                 "is-finite": {
                                   "version": "1.0.1",
-                                  "from": "is-finite@>=1.0.0 <2.0.0",
+                                  "from": "is-finite@1.0.1",
                                   "dependencies": {
                                     "number-is-nan": {
                                       "version": "1.0.0",
@@ -3818,7 +3522,7 @@
                           "dependencies": {
                             "is-finite": {
                               "version": "1.0.1",
-                              "from": "is-finite@>=1.0.0 <2.0.0",
+                              "from": "is-finite@1.0.1",
                               "dependencies": {
                                 "number-is-nan": {
                                   "version": "1.0.0",
@@ -4066,7 +3770,7 @@
             },
             "escape-string-regexp": {
               "version": "1.0.5",
-              "from": "escape-string-regexp@>=1.0.2 <2.0.0"
+              "from": "escape-string-regexp@1.0.5"
             },
             "has-ansi": {
               "version": "2.0.0",
@@ -4108,15 +3812,15 @@
             },
             "readable-stream": {
               "version": "2.0.6",
-              "from": "readable-stream@2.0.6",
+              "from": "readable-stream@>=2.0.0 <2.1.0",
               "dependencies": {
                 "core-util-is": {
                   "version": "1.0.2",
-                  "from": "core-util-is@1.0.2"
+                  "from": "core-util-is@>=1.0.0 <1.1.0"
                 },
                 "isarray": {
                   "version": "1.0.0",
-                  "from": "isarray@1.0.0"
+                  "from": "isarray@>=1.0.0 <1.1.0"
                 },
                 "process-nextick-args": {
                   "version": "1.0.7",
@@ -4144,11 +3848,11 @@
               "dependencies": {
                 "core-util-is": {
                   "version": "1.0.2",
-                  "from": "core-util-is@>=1.0.0 <1.1.0"
+                  "from": "core-util-is@1.0.2"
                 },
                 "inherits": {
                   "version": "2.0.1",
-                  "from": "inherits@>=2.0.1 <2.1.0"
+                  "from": "inherits@2.0.1"
                 },
                 "isarray": {
                   "version": "1.0.0",
@@ -4156,15 +3860,15 @@
                 },
                 "process-nextick-args": {
                   "version": "1.0.7",
-                  "from": "process-nextick-args@>=1.0.6 <1.1.0"
+                  "from": "process-nextick-args@1.0.7"
                 },
                 "string_decoder": {
                   "version": "0.10.31",
-                  "from": "string_decoder@>=0.10.0 <0.11.0"
+                  "from": "string_decoder@0.10.31"
                 },
                 "util-deprecate": {
                   "version": "1.0.2",
-                  "from": "util-deprecate@>=1.0.1 <1.1.0"
+                  "from": "util-deprecate@1.0.2"
                 }
               }
             },

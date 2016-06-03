@@ -10,7 +10,7 @@ module.exports = (gulp, plugin, util) => {
 
     return gulp.task('watch:reload', ['watch:rebuild'], () => {
       var spawned = null
-      gulp.watch('gulpfile.js', () => {
+      gulp.watch(['gulpfile.js', 'gulpfile.json'], () => {
         var options = process.argv.slice(1, 2).concat(depends || [], ['watch:rebuild'])
         var count = watchers ? watchers.length - 1 : 0
         var exec = process.argv[0]

@@ -1,2 +1,11 @@
+# Directories
+etc/
+node_modules/
 src/
+
+# File globs
 **/*.zip
+
+# File names
+gulpfile.js
+package.json

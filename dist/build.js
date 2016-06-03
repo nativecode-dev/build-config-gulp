@@ -1,1 +1,0 @@
-"use strict";module.exports=function(t,e,n){return function(n,u){u=u||"build";var i=[];return Object.keys(n).map(function(r){var s=n[r]instanceof Function?{build:n[r],name:r,src:r.split(";")}:n[r],c=u+":"+(s.name||r);i.push(c),t.task(c,s.tasks||[],function(){var n=t.src(s.src).pipe(e.cached(c)).pipe(e.debug({title:c})).pipe(e.plumber());return s.build(n)})}),t.task(u,i)}};

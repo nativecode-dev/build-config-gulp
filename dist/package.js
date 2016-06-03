@@ -1,1 +1,0 @@
-"use strict";module.exports=function(e,t,r){return function(n,p){return p=r.merge({},{dest:"dist",format:function(e,t){return e+"."+t+".zip"},name:"package",src:[]},p),e.task(p.name,n,function(){var n=p.format(r["package"].name,r["package"].version);return e.src(p.src).pipe(t.debug({title:p.name})).pipe(t.plumber()).pipe(t.zip(n)).pipe(e.dest(p.dest))})}};

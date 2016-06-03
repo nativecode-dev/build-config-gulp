@@ -22,7 +22,7 @@ module.exports = (gulp, plugin, util) => {
       name: 'package',
       src: []
     }, options)
-    return gulp.task(options.name, depends, () => {
+    return gulp.task(options.name, depends || [], () => {
       var filename = options.format(util.package.name, util.package.version)
       return gulp.src(options.src)
         .pipe(plugin.debug({ title: options.name }))

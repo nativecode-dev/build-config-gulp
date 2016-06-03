@@ -63,5 +63,7 @@ module.exports = gulp => {
   } catch (err) {
     // Do nothing!
   }
+  // Extensions.
+  gulp.expand = util.expand
   return gulp
 }

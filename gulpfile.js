@@ -1,13 +1,14 @@
 'use strict'
-var gulp = (require('./src/index.js')(require('gulp')))
+var gulp = require('./src/index.js')(require('gulp'))
+var plugin = require('gulp-load-plugins')(gulp)
 gulp.build({
   js: {
     build: src => src
-      .pipe(gulp.use.standard())
-      .pipe(gulp.use.standard.reporter('default', { breakOnError: false }))
-      .pipe(gulp.use.jslint())
-      .pipe(gulp.use.babel({ presets: ['es2015'] }))
-      .pipe(gulp.use.uglify())
+      .pipe(plugin.standard())
+      .pipe(plugin.standard.reporter('default', { breakOnError: false }))
+      .pipe(plugin.jslint())
+      .pipe(plugin.babel({ presets: ['es2015'] }))
+      .pipe(plugin.uglify())
       .pipe(gulp.dest('dist')),
     src: ['src/**/*.js']
   }

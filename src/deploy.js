@@ -2,26 +2,24 @@ module.exports = (gulp, plugin, util) => {
   'use strict'
   var defaults = {
     ssh: {
-      events: {
-        clean: ssh => { },
-        complete: ssh => { },
-        send: ssh => { }
-      },
       logfile: 'ssh.log',
       logpath: 'logs',
       privateKeyPath: undefined,
       remote: {
         host: undefined,
+        password: undefined,
         path: undefined,
-        port: 22
+        port: 22,
+        username: undefined
       },
-      src: ['dist/**/*', '!dist/**/*.zip']
+      src: ['dist/**/*', '!dist/**/*.zip'],
+      zip: true
     }
   }
   gulp.deploy = {
     ssh: options => {
       options = util.merge({}, options.ssh, defaults)
-      function connect () {
+      function connect() {
         return plugin.ssh({
           ignoreErrors: false,
           sshConfig: util.merge({}, options.remote, {
@@ -31,18 +29,31 @@ module.exports = (gulp, plugin, util) => {
           })
         })
       }
-      gulp.task('deploy:ssh', ['ssh:send'], () => {
-        return gulp.src(options.src)
-          .pipe(plugin.plumber())
-          .pipe(connect().dest(options.remote.path))
+      gulp.task('deploy:ssh', ['deploy:ssh:send'], () => {
+        var stream = connect()
+        if (options.zip) {
+          var zipname = util.package.name + '.zip'
+          stream = stream.exec(util.expand('unzip {{path}}/{{zipname}} {{path}}', {
+            path: options.remote.path,
+            zipname: zipname
+          }), { filePath: options.logfile })
+        }
+        return stream.pipe(gulp.dest(options.logfile))
       })
       gulp.task('deploy:ssh:clean', () => {
         return connect()
-          .pipe(plugin.plumber())
           .exec('rm -rf ' + options.remote.path, { filePath: options.logfile })
           .pipe(gulp.dest(options.logpath))
       })
-      gulp.task('deploy:ssh:send', ['ssh:clean'], () => {
+      gulp.task('deploy:ssh:send', ['deploy:ssh:clean'], () => {
+        var stream = gulp.src(options.src)
+          .pipe(plugin.plumber())
+        if (options.zip) {
+          var zipname = util.package.name + '.zip'
+          stream = stream.pipe(plugin.zip(zipname))
+            .pipe(plugin.filter(zipname))
+        }
+        return stream.pipe(connect().dest(options.remote.path))
       })
     }
   }

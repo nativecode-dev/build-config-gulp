@@ -15,7 +15,7 @@ module.exports = (gulp, plugin, util) => {
    * @param depends {array}           - array of dependent tasks
    * @param options {PackageOptions}  - options?
    */
-  gulp.package = function (depends, options) {
+  return (depends, options) => {
     options = util.merge({}, {
       dest: 'dist',
       format: (name, version) => name + '.' + version + '.zip',
@@ -31,5 +31,4 @@ module.exports = (gulp, plugin, util) => {
         .pipe(gulp.dest(options.dest))
     })
   }
-  return gulp.package
 }

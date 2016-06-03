@@ -1,6 +1,5 @@
 # Directories
 etc/
-node_modules/
 src/
 
 # File globs

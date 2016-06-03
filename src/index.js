@@ -53,7 +53,5 @@ module.exports = gulp => {
   gulp.package = require('./package.js')(gulp, plugin, util)
   gulp.publish = require('./publish.js')(gulp, plugin, util)
   gulp.reload = require('./reload.js')(gulp, plugin, util)
-  // Gulp extensions.
-  gulp.use = plugin
   return gulp
 }

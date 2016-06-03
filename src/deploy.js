@@ -16,10 +16,10 @@ module.exports = (gulp, plugin, util) => {
       zip: true
     }
   }
-  gulp.deploy = {
+  return {
     ssh: options => {
       options = util.merge({}, options.ssh, defaults)
-      function connect() {
+      var connect = function () {
         return plugin.ssh({
           ignoreErrors: false,
           sshConfig: util.merge({}, options.remote, {
@@ -57,5 +57,4 @@ module.exports = (gulp, plugin, util) => {
       })
     }
   }
-  return gulp.deploy
 }

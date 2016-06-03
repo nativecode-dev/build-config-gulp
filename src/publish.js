@@ -21,6 +21,12 @@ module.exports = (gulp, plugin, util) => {
     var pubtask = options.name
     var tagtask = options.name + ':tag'
 
+    /**
+     * Creates a task to tag the current version. This task will:
+     * - bump the version of provided sources
+     * - shrinkwrap the package.json
+     * - tag the local repo
+     */
     gulp.task(tagtask, options.tasks, () => {
       var filter = plugin.filter('package.json', { restore: true })
       return gulp.src(options.src)
@@ -39,6 +45,10 @@ module.exports = (gulp, plugin, util) => {
         .pipe(plugin.tag())
     })
 
+    /**
+     * Creates a git commit task on all of the sources that were
+     * version stamped.
+     */
     gulp.task(committask, [tagtask], () => {
       return gulp.src(options.src)
         // Commit changes.
@@ -49,10 +59,16 @@ module.exports = (gulp, plugin, util) => {
 
     return {
       npm: () => {
+        /**
+         * Pushes changes to remote repo.
+         */
         gulp.task(gittask, () => {
           plugin.git.push(options.git.remote.name, options.git.branch, options.git.options)
         })
 
+        /**
+         * Publishes package to registry.
+         */
         gulp.task(pubtask, [gittask], (done) => {
           util.spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['publish'], { stdio: 'inherit' }).on('close', done)
         })

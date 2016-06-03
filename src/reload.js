@@ -1,7 +1,7 @@
 module.exports = (gulp, plugin, util) => {
   'use strict'
   var watchers = []
-  gulp.reload = function (depends, options) {
+  return (depends, options) => {
     gulp.task('watch:rebuild', () => {
       Object.keys(options).map((glob) => {
         watchers.push(gulp.watch(glob, options[glob]))
@@ -32,5 +32,4 @@ module.exports = (gulp, plugin, util) => {
       })
     })
   }
-  return gulp.reload
 }

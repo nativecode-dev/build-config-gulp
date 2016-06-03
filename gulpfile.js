@@ -4,13 +4,17 @@ var plugin = require('gulp-load-plugins')(gulp)
 gulp.build({
   js: {
     build: src => src
-      .pipe(plugin.standard())
-      .pipe(plugin.standard.reporter('default', { breakOnError: false }))
-      .pipe(plugin.jslint())
       .pipe(plugin.babel({ presets: ['es2015'] }))
       .pipe(plugin.uglify())
       .pipe(gulp.dest('dist')),
-    src: ['src/**/*.js']
+    src: ['src/*.js'],
+    tasks: ['build:jss']
+  },
+  jss: {
+    build: src => src
+      .pipe(plugin.standard())
+      .pipe(plugin.standard.reporter('default', { breakOnError: false })),
+    src: ['src/*.js']
   }
 })
 gulp.package(['build'], { src: ['dist/**/*.js'] })

@@ -36,7 +36,7 @@ module.exports = (gulp, plugin, util) => {
         .pipe(gulp.dest(options.dest))
         // Tag package version.
         .pipe(filter)
-        .pipe(plugin.tagVersion())
+        .pipe(plugin.tag())
     })
 
     gulp.task(committask, [tagtask], () => {

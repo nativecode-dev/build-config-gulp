@@ -1,7 +1,20 @@
 module.exports = gulp => {
   'use strict'
   // Required dependencies.
-  var plugin = require('gulp-load-plugins')()
+  var plugin = {
+    bump: require('gulp-bump'),
+    cached: require('gulp-cached'),
+    clean: require('gulp-clean'),
+    debug: require('gulp-debug'),
+    filter: require('gulp-filter'),
+    git: require('gulp-git'),
+    help: require('gulp-help'),
+    plumber: require('gulp-plumber'),
+    shrinkwrap: require('gulp-shrinkwrap'),
+    ssh: require('gulp-ssh'),
+    tag: require('gulp-tag-version'),
+    zip: require('gulp-zip')
+  }
   // Common utility functions.
   var util = {
     expand: (template, context, options) => {

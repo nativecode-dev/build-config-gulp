@@ -1,7 +1,6 @@
 module.exports = (gulp, plugin, util) => {
   'use strict'
   var defaults = {
-    bump: { type: 'patch' },
     dest: '.',
     git: {
       branch: 'master',
@@ -10,7 +9,8 @@ module.exports = (gulp, plugin, util) => {
     },
     name: 'publish',
     src: ['bower.json', 'bower-shrinkwrap.json', 'npm-shrinkwrap.json', 'package.json'],
-    tasks: undefined
+    tasks: undefined,
+    type: 'patch'
   }
 
   return (options) => {
@@ -33,7 +33,7 @@ module.exports = (gulp, plugin, util) => {
         .pipe(plugin.debug({ title: tagtask }))
         .pipe(plugin.plumber())
         // Version bump by type.
-        .pipe(plugin.bump(options.bump))
+        .pipe(plugin.bump({ type: options.type }))
         .pipe(gulp.dest(options.dest))
         // Filter, shrinkwrap, then restore the context.
         .pipe(filter)
@@ -54,7 +54,7 @@ module.exports = (gulp, plugin, util) => {
         // Commit changes.
         .pipe(plugin.debug({ title: 'git:' }))
         .pipe(plugin.plumber())
-        .pipe(plugin.git.commit(options.bump.type))
+        .pipe(plugin.git.commit(options.type))
     })
 
     return {

@@ -9,6 +9,7 @@ module.exports = gulp => {
     filter: require('gulp-filter'),
     git: require('gulp-git'),
     help: require('gulp-help'),
+    path: require('path'),
     plumber: require('gulp-plumber'),
     shrinkwrap: require('gulp-shrinkwrap'),
     ssh: require('gulp-ssh'),
@@ -53,5 +54,14 @@ module.exports = gulp => {
   gulp.package = require('./package.js')(gulp, plugin, util)
   gulp.publish = require('./publish.js')(gulp, plugin, util)
   gulp.reload = require('./reload.js')(gulp, plugin, util)
+  // Check if there is a gulpfile.json so we can load the configuration.
+  var configpath = util.path.join(process.cwd(), 'gulpfile.json')
+  try {
+    if (util.fs.statSync(configpath)) {
+      gulp.config = JSON.parse(util.fs.readFileSync(configpath))
+    }
+  } catch (err) {
+    // Do nothing!
+  }
   return gulp
 }

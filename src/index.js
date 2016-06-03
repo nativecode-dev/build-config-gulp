@@ -1,7 +1,7 @@
 module.exports = gulp => {
   'use strict'
   // Required dependencies.
-  var plugin = require('gulp-load-plugins')(gulp)
+  var plugin = require('gulp-load-plugins')()
   // Common utility functions.
   var util = {
     expand: (template, context, options) => {

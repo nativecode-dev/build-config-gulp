@@ -9,7 +9,7 @@ module.exports = (gulp, plugin, util) => {
       remote: { name: 'origin' }
     },
     name: 'publish',
-    src: ['bower.json', 'npm-shrinkwrap.json', 'package.json'],
+    src: ['bower.json', 'bower-shrinkwrap.json', 'npm-shrinkwrap.json', 'package.json'],
     tasks: undefined
   }
 

@@ -6,7 +6,6 @@ gulp.bt.build({
   js: {
     build: src => src
       .pipe(plugin.babel($.babel))
-      .pipe(plugin.uglify())
       .pipe(gulp.dest('dist')),
     src: ['src/*.js'],
     tasks: ['build:jss']

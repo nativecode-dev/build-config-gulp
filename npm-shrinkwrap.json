@@ -1,6 +1,6 @@
 {
   "name": "gulp-build-tasks",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "dependencies": {
     "gulp": {
       "version": "3.9.1",

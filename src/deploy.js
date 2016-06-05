@@ -16,6 +16,11 @@ module.exports = (gulp, plugin, util) => {
       zip: true
     }
   }
+
+  var command = function (value, context) {
+    return util.expand(value).with(context)
+  }
+
   return {
     ssh: options => {
       options = util.merge({}, options.ssh, defaults)
@@ -33,7 +38,7 @@ module.exports = (gulp, plugin, util) => {
         var stream = connect()
         if (options.zip) {
           var zipname = util.package.name + '.zip'
-          stream = stream.exec(util.expand('unzip {{path}}/{{zipname}} {{path}}', {
+          stream = stream.exec(command('unzip {{path}}/{{zipname}} {{path}}', {
             path: options.remote.path,
             zipname: zipname
           }), { filePath: options.logfile })

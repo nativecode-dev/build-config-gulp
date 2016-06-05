@@ -14,10 +14,12 @@ module.exports = gulp => {
     shrinkwrap: require('gulp-shrinkwrap'),
     ssh: require('gulp-ssh'),
     tag: require('gulp-tag-version'),
+    util: require('gulp-util'),
     zip: require('gulp-zip')
   }
   // Common utility functions.
   var util = {
+    array: value => (value instanceof Array) ? value : [value],
     expand: template => {
       return {
         with: context => require('mustache').render(template, context)
@@ -28,32 +30,19 @@ module.exports = gulp => {
     merge: require('merge'),
     name: (name, parts) => [name].concat(parts).join(':'),
     path: require('path'),
+    package: () => util.load('package.json'),
     spawn: require('child_process').spawn,
     string: filename => util.fs.readFileSync(filename).toString()
   }
-  util.package = (() => {
-    var _package = JSON.parse(util.fs.readFileSync('package.json'))
-    _package.refresh = function () {
-      return JSON.parse(util.fs.readFileSync('package.json'))
-    }
-    return _package
-  })()
+  util.load = require('./config.js')(plugin, util).load
   // Task creation methods.
   gulp.bt = {
     build: require('./build.js')(gulp, plugin, util),
+    config: util.load('gulpfile.json'),
     deploy: require('./deploy.js')(gulp, plugin, util),
     package: require('./package.js')(gulp, plugin, util),
     publish: require('./publish.js')(gulp, plugin, util),
     reload: require('./reload.js')(gulp, plugin, util)
-  }
-  // Check if there is a gulpfile.json so we can load the configuration.
-  var configpath = util.path.join(process.cwd(), 'gulpfile.json')
-  try {
-    if (util.fs.statSync(configpath)) {
-      gulp.bt.config = JSON.parse(util.fs.readFileSync(configpath))
-    }
-  } catch (err) {
-    // Do nothing!
   }
   return gulp
 }

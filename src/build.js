@@ -34,6 +34,6 @@ module.exports = (gulp, plugin, util) => {
         return filetype.build(pipe)
       })
     })
-    return gulp.task(name, depends)
+    gulp.task(name, depends)
   }
 }

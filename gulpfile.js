@@ -2,6 +2,7 @@
 var gulp = require('./src/index.js')(require('gulp'))
 var plugin = require('gulp-load-plugins')()
 var $ = gulp.bt.config
+
 gulp.bt.build({
   js: {
     build: src => src
@@ -17,13 +18,15 @@ gulp.bt.build({
     src: ['src/*.js']
   }
 })
+
 gulp.bt.package(['build'], { src: ['dist/**/*.js'] })
+
 gulp.bt.publish({ tasks: ['package'] }).npm()
 gulp.bt.publish({ name: 'publish:major', tasks: ['package'], type: 'major' }).npm()
 gulp.bt.publish({ name: 'publish:minor', tasks: ['package'], type: 'minor' }).npm()
-gulp.bt.reload(['build'], {
-  'package.json': ['build'],
+
+gulp.bt.reload('build').with({
   'src/**/*.js': ['build:js']
 })
+
 gulp.task('default', ['build'])
-gulp.task('watch', ['build', 'watch:reload'])

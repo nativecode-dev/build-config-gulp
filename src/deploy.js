@@ -37,7 +37,7 @@ module.exports = (gulp, plugin, util) => {
       gulp.task('deploy:ssh', ['deploy:ssh:send'], () => {
         var stream = connect()
         if (options.zip) {
-          var zipname = util.package.name + '.zip'
+          var zipname = util.package().name + '.zip'
           stream = stream.exec(command('unzip {{path}}/{{zipname}} {{path}}', {
             path: options.remote.path,
             zipname: zipname
@@ -54,7 +54,7 @@ module.exports = (gulp, plugin, util) => {
         var stream = gulp.src(options.src)
           .pipe(plugin.plumber())
         if (options.zip) {
-          var zipname = util.package.name + '.zip'
+          var zipname = util.package().name + '.zip'
           stream = stream.pipe(plugin.zip(zipname))
             .pipe(plugin.filter(zipname))
         }

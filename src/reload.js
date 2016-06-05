@@ -9,7 +9,7 @@ module.exports = (gulp, plugin, util) => {
   return depends => {
     depends = util.array(depends)
     return {
-      with: options => {
+      when: options => {
         options = util.merge({}, defaults, { watchers: options })
         gulp.task('watch:rebuild', () => {
           Object.keys(options.watchers).map(glob => {

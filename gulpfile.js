@@ -25,7 +25,7 @@ gulp.bt.publish({ tasks: ['package'] }).npm()
 gulp.bt.publish({ name: 'publish:major', tasks: ['package'], type: 'major' }).npm()
 gulp.bt.publish({ name: 'publish:minor', tasks: ['package'], type: 'minor' }).npm()
 
-gulp.bt.reload('build').with({
+gulp.bt.reload('build').when({
   'src/**/*.js': ['build:js']
 })
 

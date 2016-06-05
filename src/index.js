@@ -9,6 +9,7 @@ module.exports = gulp => {
     filter: require('gulp-filter'),
     git: require('gulp-git'),
     help: require('gulp-help'),
+    mustache: require('gulp-mustache'),
     path: require('path'),
     plumber: require('gulp-plumber'),
     shrinkwrap: require('gulp-shrinkwrap'),

@@ -13,7 +13,7 @@ module.exports = (gulp, plugin, util) => {
     type: 'patch'
   }
 
-  return (options) => {
+  return options => {
     options = util.merge({}, defaults, options)
     var committask = options.name + ':commit'
     var gittask = options.name + ':push'

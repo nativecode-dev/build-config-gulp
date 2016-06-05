@@ -10,7 +10,6 @@
     "gulp-babel": "^6.1.2",
     "gulp-jslint": "^1.0.1",
     "gulp-load-plugins": "^1.2.4",
-    "gulp-sourcemaps": "^1.6.0",
     "gulp-standard": "^7.0.1"
   },
   "license": "MIT",
@@ -24,6 +23,7 @@
     "gulp-filter": "^4.0.0",
     "gulp-git": "^1.7.2",
     "gulp-help": "^1.6.1",
+    "gulp-mustache": "^2.2.0",
     "gulp-plumber": "^1.1.0",
     "gulp-shrinkwrap": "^2.0.1",
     "gulp-ssh": "^0.5.6",

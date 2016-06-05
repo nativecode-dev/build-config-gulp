@@ -1,6 +1,6 @@
 {
   "name": "gulp-build-tasks",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "dependencies": {
     "gulp": {
       "version": "3.9.1",
@@ -3893,6 +3893,10 @@
     "merge": {
       "version": "1.2.0",
       "from": "merge@1.2.0"
+    },
+    "mustache": {
+      "version": "2.2.1",
+      "from": "mustache@*"
     }
   }
 }

@@ -36,7 +36,7 @@ module.exports = (gulp, plugin, util) => {
           .pipe(plugin.debug({ title: taskname }))
           .pipe(plugin.plumber())
 
-        return filetype.build(stream)
+        return filetype.build ? filetype.build(stream) : stream
       })
     })
     gulp.task(name, depends)

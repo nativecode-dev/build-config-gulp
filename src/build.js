@@ -27,6 +27,9 @@ module.exports = (gulp, plugin, util) => {
       depends.push(taskname)
 
       gulp.task(taskname, filetype.tasks || [], () => {
+        if (filetype.src instanceof Function) {
+          return filetype.src()
+        }
         var pipe = gulp.src(filetype.src)
           .pipe(plugin.cached(taskname))
           .pipe(plugin.debug({ title: taskname }))

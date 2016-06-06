@@ -12,10 +12,9 @@ gulp.bt.build({
     tasks: ['build:jss']
   },
   jss: {
-    build: src => src
+    src: () => gulp.src('src/*.js')
       .pipe(plugin.standard())
-      .pipe(plugin.standard.reporter('default', { breakOnError: false })),
-    src: ['src/*.js']
+      .pipe(plugin.standard.reporter('default', { breakOnError: false }))
   }
 })
 

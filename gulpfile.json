@@ -2,5 +2,9 @@
   "babel": {
     "presets": ":{{target}}"
   },
+  "dest": "dist",
+  "js": {
+    "src": ["src/**/*.js"]
+  },
   "target": "es2015"
 }

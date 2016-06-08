@@ -4,7 +4,6 @@ var path = require('path')
 
 module.exports = gulp => {
   var core = {
-    array: value => value instanceof Array ? value : [value],
     config: filename => {
       try {
         var json = core.json(filename)
@@ -18,6 +17,18 @@ module.exports = gulp => {
       return JSON.parse(core.text(filename))
     },
     merge: require('merge'),
+    navigate: (hash, path) => {
+      const parts = path.split('.')
+      var current = hash
+      for (var index = 0; index < parts.length; index++) {
+        const key = parts[index]
+        if (!current[key]) {
+          throw new Error('Key ' + key + 'not found from ' + path + '.')
+        }
+        current = current[key]
+      }
+      return current
+    },
     path: path,
     plugin: {
       bump: require('gulp-bump'),
@@ -49,21 +60,6 @@ module.exports = gulp => {
     },
     spawn: require('child_process').spawn,
     stream: filename => fs.readFileSync(filename),
-    task: task => {
-      task = core.merge({}, {
-        dependencies: [],
-        src: [],
-        tasks: [],
-        type: task.type || 'task'
-      }, task)
-      if (process.env.debug) {
-        core.plugin.util.log('Creating task %s depending on [%s].', task.name, task.dependencies.join(','))
-      }
-      task.gulp = gulp.task(task.name, task.dependencies, task.build)
-      core.tasks[task.name] = task
-    },
-    taskname: (prefix, name) => prefix + ':' + name,
-    tasks: {},
     text: filename => core.stream(filename).toString()
   }
 

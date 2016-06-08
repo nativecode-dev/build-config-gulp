@@ -1,22 +1,18 @@
 'use strict'
-var gulp = require('./src/index.js')(require('gulp'))
+var configurator = require('./src/index.js')(require('gulp'))
 var plugin = require('gulp-load-plugins')()
 
-var $ = gulp.gulpfile
-
-gulp.build({
-  options: { default: true },
+configurator({
   js: {
     build: stream => stream
-      .pipe(plugin.babel($.babel)),
-    src: $.js.src,
-    tasks: ['jslint']
+      .pipe(plugin.babel({presets: 'es2015'})),
+    tasks: 'jslint'
   },
   jslint: {
-    build: stream => stream.pipe(plugin.standard())
-      .pipe(plugin.standard.reporter('default', {})),
-    src: $.js.src
+    build: stream => stream
+      .pipe(plugin.standard())
+      .pipe(plugin.standard.reporter('stylish', {})),
+    src: 'js'
   }
-}).watch({
-  options: { tasks: ['build'] }
-})
+}).build()
+  .watch()

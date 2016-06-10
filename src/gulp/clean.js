@@ -3,7 +3,7 @@ module.exports = (gulp, core) => {
     options = core.merge(true, {}, options)
 
     const common = configuration.common
-    const names = configuration.options.overrides.names
+    const names = configuration.common.names
 
     const cleaner = (name, src) => {
       var stream = gulp.src(src)

@@ -8,7 +8,7 @@ module.exports = (gulp, core) => {
     options.dest = common.artifacts ? common.artifacts : options.dest
     // SHIM
 
-    const names = configuration.options.overrides.names
+    const names = configuration.common.names
     const zipname = core.render(options.format, core.json(options.context))
     const ziptask = core.taskname(names.package, 'zip')
 

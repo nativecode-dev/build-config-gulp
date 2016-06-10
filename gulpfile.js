@@ -20,3 +20,4 @@ configure({
   .package()
   .publish()
   .watch()
+  .wiredep()

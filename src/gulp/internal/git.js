@@ -3,8 +3,13 @@ module.exports = (gulp, core) => {
 
   return {
     $: git,
-    dirty: () => {
-      git.status({ args: '--porcelain' })
+    check: {
+      dirty: callback => {
+        git.status({ args: '--porcelain', quiet: true }, (err, stdout) => {
+          if (err) throw err
+          return callback(stdout)
+        })
+      }
     }
   }
 }

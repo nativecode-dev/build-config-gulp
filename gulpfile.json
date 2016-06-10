@@ -8,6 +8,12 @@
       "npm": {
         "registry": "https://npm.nativecode.com"
       }
+    },
+    "wiredep": {
+      "src": [
+        "html"
+      ],
+      "options": {}
     }
   },
   "plugins": {

@@ -1,6 +1,6 @@
 module.exports = (gulp, core) => {
   return (configuration, options) => {
-    const names = configuration.options.overrides.names
+    const names = configuration.common.names
     const builds = Object.keys(configuration.builds)
 
     builds.map(key => {

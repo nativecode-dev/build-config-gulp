@@ -8,7 +8,7 @@ module.exports = (gulp, core) => {
       throw new Error('Watches have been disabled. If you wish to enable them, set the watch object back to the default')
     }
 
-    const names = configuration.options.overrides.names
+    const names = configuration.common.names
     const watches = Object.keys(configuration.watches)
 
     // Create individual watch tasks, i.e. build:js becomes watch:js.

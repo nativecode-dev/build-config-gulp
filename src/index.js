@@ -11,7 +11,8 @@ module.exports = gulp => {
         deploy: require('./gulp/deploy.js')(gulp, core),
         package: require('./gulp/package.js')(gulp, core),
         publish: require('./gulp/publish.js')(gulp, core),
-        watch: require('./gulp/watch.js')(gulp, core)
+        watch: require('./gulp/watch.js')(gulp, core),
+        wiredep: require('./gulp/wiredep.js')(gulp, core)
       }
     })
   }

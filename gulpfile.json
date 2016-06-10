@@ -1,14 +1,10 @@
 {
   "common": {
-    "artifacts": "artifacts"
+    "artifacts": "artifacts",
+    "debug": true
   },
   "options": {
-    "package": {
-      "context": "package.json",
-      "dest": ":{{common.artifacts}}"
-    },
     "publish": {
-      "src": ["package.json"],
       "npm": {
         "registry": "https://npm.nativecode.com"
       }

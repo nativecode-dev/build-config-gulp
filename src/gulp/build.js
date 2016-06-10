@@ -4,21 +4,24 @@ module.exports = (gulp, core) => {
     const builds = Object.keys(configuration.builds)
 
     builds.map(key => {
-      const config = configuration.builds[key]
+      const build = configuration.builds[key]
+      core.debug('[%s] source: %s', build.name, core.quote(build.source))
+      core.debug('[%s] target: %s', build.name, core.quote(build.target))
+      core.debug('[%s] depends: %s', build.name, core.quote(build.dependencies))
 
-      gulp.task(config.name, config.dependencies, () => {
-        var stream = core.is.func(config.build)
-          ? config.build(gulp.src(config.source))
-          : gulp.src(config.source)
+      gulp.task(build.name, build.dependencies, () => {
+        var stream = core.is.func(build.build)
+          ? build.build(gulp.src(build.source))
+          : gulp.src(build.source)
 
-        stream = stream.pipe(core.plugin.cached(config.name))
+        stream = stream.pipe(core.plugin.cached(build.name))
 
         if (process.env.debug) {
           stream = stream.pipe(core.plugin.debug({title: '[' + key + ']'}))
         }
         stream = stream.pipe(core.plugin.plumber())
 
-        return config.target ? stream.pipe(gulp.dest(config.target)) : stream
+        return build.target ? stream.pipe(gulp.dest(build.target)) : stream
       })
     })
 

@@ -9,6 +9,7 @@ configure({
     tasks: 'jslint'
   },
   jslint: {
+    dest: false,
     build: stream => stream
       .pipe(plugin.standard())
       .pipe(plugin.standard.reporter('default', {}))

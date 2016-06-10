@@ -14,9 +14,10 @@ module.exports = (gulp, core) => {
     // Create individual watch tasks, i.e. build:js becomes watch:js.
     watches.map(key => {
       const watch = configuration.watches[key]
+      core.debug('[%s] source: %s', watch.name, core.quote(watch.source))
+      core.debug('[%s] target: %s', watch.name, core.quote(watch.dependencies))
 
       gulp.task(watch.name, () => {
-        core.debug('Watching for %s changes (%s).', key, watch.source.join(', '))
         if (configuration.builds[key]) {
           gulp.watch(watch.source, [configuration.builds[key].name])
         } else {

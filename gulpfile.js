@@ -1,8 +1,8 @@
 'use strict'
-var configurator = require('./src/index.js')(require('gulp'))
+var configure = require('./src/index.js')(require('gulp'))
 var plugin = require('gulp-load-plugins')()
 
-configurator({
+configure({
   js: {
     build: stream => stream
       .pipe(plugin.babel({presets: 'es2015'})),
@@ -11,8 +11,11 @@ configurator({
   jslint: {
     build: stream => stream
       .pipe(plugin.standard())
-      .pipe(plugin.standard.reporter('stylish', {})),
-    src: 'js'
+      .pipe(plugin.standard.reporter('default', {}))
   }
-}).build()
+})
+  .build()
+  .clean()
+  .package()
+  .publish()
   .watch()

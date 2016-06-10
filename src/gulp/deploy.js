@@ -1,4 +1,4 @@
 module.exports = (gulp, core) => {
-  return configuration => {
+  return (configuration, options) => {
   }
 }

@@ -1,10 +1,22 @@
 {
-  "babel": {
-    "presets": ":{{target}}"
+  "common": {
+    "artifacts": "artifacts"
   },
-  "dest": "dist",
-  "js": {
-    "src": ["src/**/*.js"]
+  "options": {
+    "package": {
+      "context": "package.json",
+      "dest": ":{{common.artifacts}}"
+    },
+    "publish": {
+      "src": ["package.json"],
+      "npm": {
+        "registry": "https://npm.nativecode.com"
+      }
+    }
   },
-  "target": "es2015"
+  "plugins": {
+    "babel": {
+      "presets": "es2015"
+    }
+  }
 }

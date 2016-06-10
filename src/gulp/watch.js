@@ -1,16 +1,22 @@
 module.exports = (gulp, core) => {
   var spawned = null
 
-  return configuration => {
+  return (configuration, options) => {
+    options = core.merge(true, configuration.options.watch, options)
+
+    if (!configuration.options.watch) {
+      throw new Error('Watches have been disabled. If you wish to enable them, set the watch object back to the default')
+    }
+
     const names = configuration.options.overrides.names
-    const options = configuration.options.watch
     const watches = Object.keys(configuration.watches)
 
     // Create individual watch tasks, i.e. build:js becomes watch:js.
     watches.map(key => {
       const watch = configuration.watches[key]
+
       gulp.task(watch.name, () => {
-        core.plugin.util.log('Watching for changes to [%s].', watch.source.join(', '))
+        core.debug('Watching for %s changes (%s).', key, watch.source.join(', '))
         if (configuration.builds[key]) {
           gulp.watch(watch.source, [configuration.builds[key].name])
         } else {
@@ -34,11 +40,14 @@ module.exports = (gulp, core) => {
       return spawned
     }
 
+    // If configuration watching is enabled, we want to ensure we always spawn a new process
+    // that we can control from this main process. All builds will run from the spawned
+    // process. Otherwise, we just perform a watch directly.
     const dependencies = watches.map(key => configuration.watches[key].name).concat(names.build)
-    if (options.configurations.enabled) {
+    if (options.configurations) {
       gulp.task(names.watch, () => {
         resurrect(dependencies)
-        gulp.watch(options.configurations.src, () => resurrect(dependencies))
+        gulp.watch(options.configurations.src, { debounceDelay: options.debounce, interval: options.interval }, () => resurrect(dependencies))
       })
     } else {
       gulp.task(names.watch, dependencies)

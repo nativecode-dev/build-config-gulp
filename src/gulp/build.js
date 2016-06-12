@@ -3,6 +3,8 @@ module.exports = (gulp, core) => {
     const names = configuration.common.names
     const builds = Object.keys(configuration.builds)
 
+    const context = core.resolve(core.merge(true, configuration, core.json('package.json')), null, true)
+
     builds.map(key => {
       const build = configuration.builds[key]
       core.debug('[%s] source: %s', build.name, core.quote(build.source))
@@ -11,7 +13,7 @@ module.exports = (gulp, core) => {
 
       gulp.task(build.name, build.dependencies, () => {
         var stream = core.is.func(build.build)
-          ? build.build(gulp.src(build.source), configuration)
+          ? build.build(gulp.src(build.source), context)
           : gulp.src(build.source)
 
         stream = stream.pipe(core.plugin.cached(build.name))

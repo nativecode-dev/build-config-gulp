@@ -1,4 +1,4 @@
-[![TeamCity (simple build status)](https://img.shields.io/teamcity/http/teamcity.jetbrains.com/s/bt345.svg?maxAge=2592000?style=flat-square)](https://build.nativecode.com/viewType.html?buildTypeId=nativecode_opensource_buildconfig_continuous)
+[![TeamCity (simple build status)](https://img.shields.io/teamcity/http/teamcity.jetbrains.com/s/bt345.svg?maxAge=2592000&style=flat-square&label=continuous)](https://build.nativecode.com/viewType.html?buildTypeId=nativecode_opensource_buildconfig_continuous)
 
 # gulp-build-tasks
 Simple set of build tasks for quickly getting a project up and running with Gulp.

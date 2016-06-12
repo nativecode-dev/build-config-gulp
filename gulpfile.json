@@ -5,6 +5,7 @@
       "branch": "branch_nativecode_opensource_buildconfig",
       "name": "nativecode_opensource_buildconfig_continuous"
     },
+    "company": "NativeCode Development",
     "components": ":{{common.dest}}/components",
     "names": {
       "wiredep": "wiredep"

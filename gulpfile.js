@@ -14,11 +14,11 @@ configure({
       .pipe(plugin.standard.reporter('default', {})),
     dest: false
   },
-  readme: {
+  text: {
     build: (stream, $) => stream
       .pipe(plugin.mustache($)),
     dest: '.',
-    src: 'src/README.md'
+    src: ['src/LICENSE', 'src/README.md']
   }
 })
   .build()

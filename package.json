@@ -1,5 +1,4 @@
 {
-  "name": "build-config-gulp",
   "author": "support@nativecode.com",
   "dependencies": {
     "chalk": "^1.1.3",
@@ -29,6 +28,7 @@
   },
   "license": "MIT",
   "main": "dist/index.js",
+  "name": "build-config-gulp",
   "peerDependencies": {
     "gulp": "^3.9.1"
   },

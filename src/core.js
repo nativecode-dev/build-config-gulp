@@ -1,4 +1,5 @@
 module.exports = (gulp, core) => {
+  core.chalk = require('chalk')
   core.debug = function () {
     if (!process.env.debug) return
     if (core.plugin.util) {
@@ -21,6 +22,7 @@ module.exports = (gulp, core) => {
     shrinkwrap: require('gulp-shrinkwrap'),
     ssh: require('gulp-ssh'),
     util: require('gulp-util'),
+    wiredep: require('wiredep'),
     zip: require('gulp-zip')
   }
 

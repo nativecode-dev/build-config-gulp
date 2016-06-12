@@ -1,9 +1,17 @@
 {
   "common": {
     "artifacts": "artifacts",
-    "debug": true
+    "components": ":{{common.dest}}/components",
+    "names": {
+      "wiredep": "wiredep"
+    }
   },
   "options": {
+    "package": {
+      "src": [
+        "dist/**/*.js"
+      ]
+    },
     "publish": {
       "npm": {
         "registry": "https://npm.nativecode.com"
@@ -19,6 +27,10 @@
   "plugins": {
     "babel": {
       "presets": "es2015"
+    },
+    "badge": {
+      "link": "https://build.nativecode.com/viewType.html?buildTypeId=nativecode_opensource_buildconfig_continuous",
+      "src": "https://img.shields.io/teamcity/http/teamcity.jetbrains.com/s/bt345.svg?maxAge=2592000?style=flat-square"
     }
   }
 }

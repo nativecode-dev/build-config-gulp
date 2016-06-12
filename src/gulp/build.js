@@ -11,12 +11,12 @@ module.exports = (gulp, core) => {
 
       gulp.task(build.name, build.dependencies, () => {
         var stream = core.is.func(build.build)
-          ? build.build(gulp.src(build.source))
+          ? build.build(gulp.src(build.source), configuration)
           : gulp.src(build.source)
 
         stream = stream.pipe(core.plugin.cached(build.name))
 
-        if (process.env.debug) {
+        if (configuration.common.debug) {
           stream = stream.pipe(core.plugin.debug({title: '[' + key + ']'}))
         }
         stream = stream.pipe(core.plugin.plumber())

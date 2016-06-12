@@ -7,8 +7,8 @@ module.exports = (gulp, core) => {
     gulp.task(names.publish, done => {
       core.git.check.dirty(dirty => {
         if (dirty) {
-          core.plugin.util.log('Current local repository has uncommitted changes.')
-          core.plugin.util.log(dirty)
+          core.plugin.util.log(core.chalk.bgRed(' Current local repository has uncommitted changes. '))
+          dirty.split('\n').map(line => core.plugin.util.log(core.chalk.red(line.trim())))
         } else {
           // Do the real stuff
         }

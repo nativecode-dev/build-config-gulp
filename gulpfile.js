@@ -9,10 +9,16 @@ configure({
     tasks: 'jslint'
   },
   jslint: {
-    dest: false,
     build: stream => stream
       .pipe(plugin.standard())
-      .pipe(plugin.standard.reporter('default', {}))
+      .pipe(plugin.standard.reporter('default', {})),
+    dest: false
+  },
+  readme: {
+    build: (stream, $) => stream
+      .pipe(plugin.mustache($)),
+    dest: '.',
+    src: 'src/README.md'
   }
 })
   .build()

@@ -8,6 +8,7 @@
     "company": "NativeCode Development",
     "components": ":{{common.dest}}/components",
     "names": {
+      "version": "version",
       "wiredep": "wiredep"
     }
   },
@@ -18,6 +19,7 @@
       ]
     },
     "publish": {
+      "src": ["bower.json", "package.json"],
       "npm": {
         "registry": "https://npm.nativecode.com"
       }

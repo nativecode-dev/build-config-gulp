@@ -20,22 +20,22 @@ module.exports = (gulp, core) => {
     if (common.artifacts) {
       const artifacts = core.taskname(names.clean, 'artifacts')
       dependencies.push(artifacts)
-      gulp.task(artifacts, () => cleaner(artifacts, common.artifacts))
+      core.task(artifacts, () => cleaner(artifacts, common.artifacts))
     }
 
     if (common.dest) {
       const dest = core.taskname(names.clean, 'dest')
       dependencies.push(dest)
-      gulp.task(dest, () => cleaner(dest, common.dest))
+      core.task(dest, () => cleaner(dest, common.dest))
     }
 
     Object.keys(options).map(key => {
       const value = options[key]
       const name = core.taskname(names.clean, key)
-      gulp.task(name, () => cleaner(name, value))
+      core.task(name, () => cleaner(name, value))
       dependencies.push(name)
     })
 
-    gulp.task(names.clean, dependencies)
+    core.task(names.clean, dependencies)
   }
 }

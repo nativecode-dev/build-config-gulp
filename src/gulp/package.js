@@ -15,11 +15,11 @@ module.exports = (gulp, core) => {
     core.debug('[%s] source: %s', ziptask, core.quote(options.src))
     core.debug('[%s] target: %s', ziptask, core.quote(zipname))
 
-    gulp.task(names.package, [names.clean], () => {
+    core.task(names.package, [names.clean], () => {
       return gulp.start(ziptask)
     })
 
-    gulp.task(ziptask, core.array(options.tasks), () => {
+    core.task(ziptask, core.array(options.tasks), () => {
       var stream = gulp.src(options.src)
 
       if (common.debug) {

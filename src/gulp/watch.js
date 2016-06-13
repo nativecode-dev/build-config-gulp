@@ -17,7 +17,7 @@ module.exports = (gulp, core) => {
       core.debug('[%s] source: %s', watch.name, core.quote(watch.source))
       core.debug('[%s] target: %s', watch.name, core.quote(watch.dependencies))
 
-      gulp.task(watch.name, () => {
+      core.task(watch.name, () => {
         if (configuration.builds[key]) {
           gulp.watch(watch.source, [configuration.builds[key].name])
         } else {
@@ -46,12 +46,12 @@ module.exports = (gulp, core) => {
     // process. Otherwise, we just perform a watch directly.
     const dependencies = watches.map(key => configuration.watches[key].name).concat(names.build)
     if (options.configurations) {
-      gulp.task(names.watch, () => {
+      core.task(names.watch, () => {
         resurrect(dependencies)
         gulp.watch(options.configurations.src, { debounceDelay: options.debounce, interval: options.interval }, () => resurrect(dependencies))
       })
     } else {
-      gulp.task(names.watch, dependencies)
+      core.task(names.watch, dependencies)
     }
   }
 }

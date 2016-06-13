@@ -11,6 +11,8 @@ module.exports = (gulp, core) => {
   }
 
   core.pipe = (stream, title) => {
+    core.require(stream)
+    core.require(title)
     stream = stream.pipe(core.plugin.cached(title))
     return (process.env.debug ? stream.pipe(core.plugin.debug({title: title})) : stream)
       .pipe(core.plugin.plumber())

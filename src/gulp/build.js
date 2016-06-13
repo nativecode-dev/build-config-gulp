@@ -13,8 +13,8 @@ module.exports = (gulp, core) => {
 
       core.task(build.name, build.dependencies, () => {
         var stream = core.is.func(build.build)
-          ? build.build(core.pipe(gulp.src(build.source)), context)
-          : core.pipe(gulp.src(build.source))
+          ? build.build(core.pipe(gulp.src(build.source), key), context)
+          : core.pipe(gulp.src(build.source), key)
 
         return build.target ? stream.pipe(gulp.dest(build.target)) : stream
       })

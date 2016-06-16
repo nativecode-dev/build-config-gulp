@@ -1,13 +1,31 @@
 const tasks = {}
 
 module.exports = (gulp, core) => {
-  core.chalk = require('chalk')
-  core.debug = function () {
+  core.plugin = {
+    bump: require('gulp-bump'),
+    cached: require('gulp-cached'),
+    clean: require('gulp-clean'),
+    debug: require('gulp-debug'),
+    filter: require('gulp-filter'),
+    help: require('gulp-help')(gulp),
+    plumber: require('gulp-plumber'),
+    prompt: require('gulp-prompt'),
+    shrinkwrap: require('gulp-shrinkwrap'),
+    ssh: require('gulp-ssh'),
+    util: require('gulp-util'),
+    wiredep: require('wiredep'),
+    zip: require('gulp-zip')
+  }
+
+  core.chalk = core.plugin.util.colors
+
+  core.debug = (...args) => {
     if (!process.env.debug) return
+    const message = core.chalk.gray(core.print(args))
     if (core.plugin.util) {
-      return core.plugin.util.log.apply(gulp, arguments)
+      return core.plugin.util.log.apply(gulp, [message])
     }
-    return console.log.apply(console, arguments)
+    return console.log(message)
   }
 
   core.pipe = (stream, title) => {
@@ -19,6 +37,7 @@ module.exports = (gulp, core) => {
   }
 
   core.spawn = require('child_process').spawn
+
   core.task = (name, dependencies, callback) => {
     if (dependencies || callback) {
       tasks[name] = gulp.task(name, dependencies, callback)
@@ -26,24 +45,7 @@ module.exports = (gulp, core) => {
     return tasks[name]
   }
 
-  // These must come last due to requiring monkey patching
-  // from above.
-  core.git = require('./gulp/internal/git.js')(gulp, core)
-  core.plugin = {
-    bump: require('gulp-bump'),
-    cached: require('gulp-cached'),
-    clean: require('gulp-clean'),
-    debug: require('gulp-debug'),
-    filter: require('gulp-filter'),
-    git: core.git.$,
-    help: require('gulp-help')(gulp),
-    plumber: require('gulp-plumber'),
-    shrinkwrap: require('gulp-shrinkwrap'),
-    ssh: require('gulp-ssh'),
-    util: require('gulp-util'),
-    wiredep: require('wiredep'),
-    zip: require('gulp-zip')
-  }
+  core.git = require('./gulp/git.js')(gulp, core)
 
   return core
 }

@@ -11,7 +11,7 @@ configure({
   jslint: {
     build: stream => stream
       .pipe(plugin.standard())
-      .pipe(plugin.standard.reporter('default', {})),
+      .pipe(plugin.standard.reporter('stylish', { breakOnError: true })),
     dest: false
   },
   text: {

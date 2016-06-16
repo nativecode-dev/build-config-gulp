@@ -12,7 +12,7 @@ module.exports = (gulp, core) => {
       core.debug('[%s] depends: %s', build.name, core.quote(build.dependencies))
 
       core.task(build.name, build.dependencies, () => {
-        var stream = core.is.func(build.build)
+        let stream = core.is.func(build.build)
           ? build.build(core.pipe(gulp.src(build.source), key), context)
           : core.pipe(gulp.src(build.source), key)
 
